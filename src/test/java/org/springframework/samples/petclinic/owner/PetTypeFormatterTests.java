@@ -78,12 +78,22 @@ public class PetTypeFormatterTests {
     private List<PetType> makePetTypes() {
         List<PetType> petTypes = new ArrayList<>();
         petTypes.add(new PetType() {
-            {
+            /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			{
                 setName("Dog");
             }
         });
         petTypes.add(new PetType() {
-            {
+            /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			{
                 setName("Bird");
             }
         });
