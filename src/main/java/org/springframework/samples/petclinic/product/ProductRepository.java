@@ -17,26 +17,11 @@ package org.springframework.samples.petclinic.product;
 
 import java.util.Collection;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.data.repository.Repository;
 
-/**
- */
-@Controller
-class ProductController {
-	private ProductRepository products;
+public interface ProductRepository 
+extends Repository<Product, Integer> {
 
-	public ProductController(ProductRepository products) {
-		super();
-		this.products = products;
-	}
-
-	@GetMapping("/products")
-	public String processFindForm(Model model) {
-		Collection<Product> productsList = products.findAll();	
-		model.addAttribute("products", productsList);
-		return "products/productsList";
-	}
+ Collection<Product> findAll();
 
 }

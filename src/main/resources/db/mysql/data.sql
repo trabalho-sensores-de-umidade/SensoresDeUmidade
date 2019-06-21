@@ -51,3 +51,7 @@ INSERT IGNORE INTO visits VALUES (1, 7, '2010-03-04', 'rabies shot');
 INSERT IGNORE INTO visits VALUES (2, 8, '2011-03-04', 'rabies shot');
 INSERT IGNORE INTO visits VALUES (3, 8, '2009-06-04', 'neutered');
 INSERT IGNORE INTO visits VALUES (4, 7, '2008-09-04', 'spayed');
+
+INSERT IGNORE INTO products VALUES (1, 'Golden gato adulto salmão 1kg');
+INSERT IGNORE INTO products VALUES (2, 'Frango Sonoro Vinil');
+INSERT IGNORE INTO products VALUES (3, 'Whiskas sachet');
