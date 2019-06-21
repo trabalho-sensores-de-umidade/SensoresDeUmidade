@@ -19,9 +19,10 @@ import java.util.Collection;
 
 import org.springframework.data.repository.Repository;
 
-public interface ProductRepository 
-extends Repository<Product, Integer> {
+public interface ProductRepository extends Repository<Product, Integer> {
 
- Collection<Product> findAll();
+	Collection<Product> findAll();
+
+	//Product findById(Integer testid);
 
 }

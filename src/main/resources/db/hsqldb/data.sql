@@ -52,9 +52,15 @@ INSERT INTO visits VALUES (2, 8, '2013-01-02', 'rabies shot');
 INSERT INTO visits VALUES (3, 8, '2013-01-03', 'neutered');
 INSERT INTO visits VALUES (4, 7, '2013-01-04', 'spayed');
 
-INSERT INTO products VALUES (1, 'Golden gato adulto salmão 1kg');
-INSERT INTO products VALUES (2, 'Frango Sonoro Vinil');
-INSERT INTO products VALUES (3, 'Whiskas sachet');
+INSERT INTO products VALUES (1, 
+'Golden gato adulto salmão 1kg', 
+'Formulada com ingredientes de alta qualidade e balanceada para suprir às particularidades nutricionais dos felinos, Golden Gatos Adultos Salmão oferece sabor irresistível e cuidados  especiais com o trato urinário, garantindo assim, sabor  e saúde para seu gato.');
+INSERT INTO products VALUES (2, 
+'Frango Sonoro Vinil', 
+'Brinquedo frango em vinil sonoro. Dimensões: Altura: 38cm Largura: 10 cm Profundidade: 8 cm');
+INSERT INTO products VALUES (3, 
+'Ração Whiskas Sachê Atum para Gatos Adultos 85g', 
+'WHISKAS® Sachê Adulto Sabor Atum ao Molho WHISKAS® sabe o que os gatos naturalmente precisam e amam. Por isso, cada sachê é preparado cuidadosamente com ingredientes de alta qualidade, garantindo os nutrientes que eles precisam todos os dias, e agora com um molho ainda mais encorpado. Disponível em embalagens de 85g, prática, fácil de abrir e que contém a medida certa para uma refeição saudável, completa e balanceada.');
 
 
 
