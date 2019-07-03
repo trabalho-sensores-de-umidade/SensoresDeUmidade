@@ -20,6 +20,8 @@ import java.util.Collection;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  */
@@ -39,4 +41,12 @@ class ProductController {
 		return "products/productsList";
 	}
 
+	@GetMapping("/products/{productId}")
+	public ModelAndView showProduct(@PathVariable("productId") int productId) {
+        ModelAndView mav = new ModelAndView("products/productDetails");
+        mav.addObject(this.products.findById(productId));
+        return mav;		
+	}
+	
+	
 }
