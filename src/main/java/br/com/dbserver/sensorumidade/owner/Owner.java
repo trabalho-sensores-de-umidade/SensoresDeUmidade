@@ -16,7 +16,7 @@ import org.springframework.beans.support.PropertyComparator;
 import org.springframework.core.style.ToStringCreator;
 import org.springframework.samples.petclinic.model.Person;
 
-import br.com.dbserver.sensorumidade.flower.Plant;
+import br.com.dbserver.sensorumidade.plant.Plant;
 
 
 @Entity

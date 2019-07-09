@@ -1,4 +1,4 @@
-package br.com.dbserver.sensorumidade.flower;
+package br.com.dbserver.sensorumidade.plant;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
