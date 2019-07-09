@@ -16,8 +16,17 @@ public abstract class SensorUmidade {
 	public void setPinoA0(int pinoA0) {
 		this.pinoA0 = pinoA0;
 	}
+	public static int getPinovcc() {
+		return pinoVCC;
+	}
+	public static int getPinognd() {
+		return pinoGND;
+	}
 
-
+	public void generationNumRandom() {
+		Random generation = new Random();
+		pinoA0 = generation.nextInt(1023);
+	}
 
 	
 }

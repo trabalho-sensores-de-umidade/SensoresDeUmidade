@@ -1,5 +1,9 @@
 package br.com.dbserver.sensorumidade.flower;
-import java.util.Random;
+
+import javax.persistence.Column;
+import javax.validation.constraints.NotEmpty;
+
+
 import br.com.dbserver.sensorumidade.sensor.SensorUmidade;
 
 public abstract class Flower {
@@ -8,8 +12,16 @@ public abstract class Flower {
 	
 	private SensorUmidade sensor;
 	
-	public int generationNumRandom() {
-		Random generation = new Random();
-		return generation.nextInt(1023);
+	@Column(name = "flower_name")
+    @NotEmpty
+    private String flowerName;
+
+	public String getFlowerName() {
+		return flowerName;
 	}
+
+	public void setFlowerName(String flowerName) {
+		this.flowerName = flowerName;
+	}
+		
 }
