@@ -16,22 +16,15 @@
 
 package br.com.dbserver.sensorumidade.model;
 
-import java.util.Set;
 
-import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
 import org.junit.Test;
 
-
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
-import static org.assertj.core.api.Assertions.assertThat;
 
-/**
- * @author Michael Isvy Simple test to make sure that Bean Validation is working (useful
- * when upgrading to a new version of Hibernate Validator/ Bean Validation)
- */
+
 public class ValidatorTests {
 
     private Validator createValidator() {

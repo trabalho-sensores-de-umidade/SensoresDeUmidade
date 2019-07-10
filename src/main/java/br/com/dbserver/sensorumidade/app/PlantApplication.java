@@ -25,14 +25,14 @@ public class PlantApplication {
 
 	@Bean
 	public RestTemplate restTemplate(RestTemplateBuilder builder) {
-		return builder.build();
+		return builder.build(); 
 	}
     
 	@Bean
 	public CommandLineRunner run(RestTemplate restTemplate) throws Exception {
 		return args -> {
 			SensorUmidade sensor = restTemplate.getForObject(
-					"http://localhost:8080/sensor/2", SensorUmidade.class);
+					"http://localhost:8080/sensor/1", SensorUmidade.class);
 			log.info(sensor.toString());
 		};
 	}

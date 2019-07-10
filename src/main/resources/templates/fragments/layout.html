@@ -49,28 +49,11 @@
                       <span>Home</span>
                   </li>
   
-                  <li th:replace="::menuItem ('/owners/find','owners','find owners','search','Find owners')">
-                      <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                      <span>Find owners</span>
-                  </li>
-  
-                  <li th:replace="::menuItem ('/vets.html','vets','veterinarians','th-list','Veterinarians')">
+                  <li th:replace="::menuItem ('/plants','plants','plants','th-list','Plants')">
                       <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-                      <span>Veterinarians</span>
+                      <span>Plants</span>
                   </li>
-  
-                  <li th:replace="::menuItem ('/products','products','product catalog','th-list','Products')">
-                      <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-                      <span>Products</span>
-                  </li>
-
-                  <li th:replace="::menuItem ('/login','login','authentication','th-list',
-                  			${#httpServletRequest.remoteUser == null ? 
-                  	          'LOGIN' : 
-                  	          #httpServletRequest.remoteUser})">
-                      <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-                      <span>Login</span>
-                  </li>                                  
+                              
   
               </ul>
           </div>

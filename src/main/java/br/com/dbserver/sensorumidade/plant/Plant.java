@@ -1,43 +1,34 @@
 package br.com.dbserver.sensorumidade.plant;
-import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.validation.constraints.NotEmpty;
-
-import org.springframework.format.annotation.DateTimeFormat;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 import br.com.dbserver.sensorumidade.model.NamedEntity;
 
+@Entity
+@Table(name = "plants")
 public class Plant extends NamedEntity {
 	
 	private static final long serialVersionUID = 1L;
 	
-		
-	@Column(name = "type_id")
-	@NotEmpty
-	private PlantType type;
+	private int moisture_minimum;
+	private int moisture_maximum; 
 	
-	
-	@Column(name = "date")
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate date;
-	
-	
-	public PlantType getType() {
-		return type;
+
+	public int getMoisture_minimum() {
+		return moisture_minimum;
 	}
 
-	public void setType(PlantType type) {
-		this.type = type;
+	public void setMoisture_minimum(int moisture_minimum) {
+		this.moisture_minimum = moisture_minimum; 
 	}
 
-	public LocalDate getDate() {
-		return date;
+	public int getMoisture_maximum() {
+		return moisture_maximum;
 	}
 
-	public void setDate(LocalDate date) {
-		this.date = date;
-	}
-	
+	public void setMoisture_maximum(int moisture_maximum) {
+		this.moisture_maximum = moisture_maximum;
+	}		
 		
 }

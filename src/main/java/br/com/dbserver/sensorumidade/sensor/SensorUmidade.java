@@ -1,8 +1,6 @@
 package br.com.dbserver.sensorumidade.sensor;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -12,9 +10,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 public class SensorUmidade {
 	
-	@Id
+	
 	//@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	@Id
+	private int id;
     private String nome;
     private int umidade_atual;
     
@@ -22,7 +21,7 @@ public class SensorUmidade {
 		return id;
 	}
 	
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org" 
+th:replace="~{fragments/layout :: layout (~{::body},'plants')}">
+
+  <body>
+
+    <h2>Plants Details</h2>
+
+    <table class="table table-striped" th:object="${plant}">
+      <tr>
+        <th>Name</th>
+        <td><b th:text="*{name}"></b></td>
+      </tr>
+    </table>
+
+  </body>
+</html>
