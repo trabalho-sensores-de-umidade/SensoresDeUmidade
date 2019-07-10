@@ -32,7 +32,7 @@ public class PlantApplication {
 	public CommandLineRunner run(RestTemplate restTemplate) throws Exception {
 		return args -> {
 			SensorUmidade sensor = restTemplate.getForObject(
-					"https://localhost:8080/sensor/1", SensorUmidade.class);
+					"http://localhost:8080/sensor/2", SensorUmidade.class);
 			log.info(sensor.toString());
 		};
 	}

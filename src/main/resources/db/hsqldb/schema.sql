@@ -16,7 +16,7 @@ CREATE TABLE sensor (
   name VARCHAR(30),
   
   );
-ALTER TABLE reading ADD CONSTRAINT fk_sensor_plants FOREIGN KEY (plant_id) REFERENCES plants (id);
+ALTER TABLE sensor ADD CONSTRAINT fk_sensor_plants FOREIGN KEY (plant_id) REFERENCES plants (id);
 CREATE INDEX sensor_name ON sensor (name);
 
 CREATE TABLE reading (
@@ -28,7 +28,7 @@ CREATE TABLE reading (
 );
 
 ALTER TABLE reading ADD CONSTRAINT fk_reading_sensor FOREIGN KEY (sensor_id) REFERENCES sensor (id);
-CREATE INDEX reading_plant_id ON reading (plant_id);
+CREATE INDEX reading_plant_id ON reading (id);
 
 
 
