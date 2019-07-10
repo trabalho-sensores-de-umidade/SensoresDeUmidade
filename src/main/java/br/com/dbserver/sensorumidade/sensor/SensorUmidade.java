@@ -1,32 +1,43 @@
 package br.com.dbserver.sensorumidade.sensor;
 
-import java.util.Random;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-public abstract class SensorUmidade {
+@Entity
+public class SensorUmidade {
 	
-	private static final int pinoVCC = 1;
-	private static final int pinoGND = 0;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
+    private String nome;
+    private int umidade_atual;
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public int getUmidade_atual() {
+		return umidade_atual;
+	}
+	public void setUmidade_atual(int umidade_atual) {
+		this.umidade_atual = umidade_atual;
+	}
 	
-	// Pino de leitura
-	private int pinoA0 = 0;
-	
-	public int getPinoA0() {
-		return pinoA0;
+	@Override
+	public String toString() {
+		return "Sensor [id=" + id + ", nome=" + nome + ", umidade_atual=" + umidade_atual + "]";
 	}
-	public void setPinoA0(int pinoA0) {
-		this.pinoA0 = pinoA0;
-	}
-	public static int getPinovcc() {
-		return pinoVCC;
-	}
-	public static int getPinognd() {
-		return pinoGND;
-	}
+     
 
-	public void generationNumRandom() {
-		Random generation = new Random();
-		pinoA0 = generation.nextInt(1023);
-	}
 
-	
+
 }
