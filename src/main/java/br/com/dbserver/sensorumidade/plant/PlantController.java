@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.dbserver.sensorumidade.owner.Owner;
-import br.com.dbserver.sensorumidade.owner.OwnerRepository;
 import br.com.dbserver.sensorumidade.plant.PlantRepository;
 
 @Controller
@@ -19,24 +17,17 @@ import br.com.dbserver.sensorumidade.plant.PlantRepository;
 public class PlantController {
 	
 	private final PlantRepository plantR;
-	private final OwnerRepository owners;
 	
-	public PlantController(PlantRepository plantR, OwnerRepository owners) {
+	public PlantController(PlantRepository plantR) {
 		super();
 		this.plantR = plantR;
-		this.owners = owners;
 	}
 	
 	@ModelAttribute("types")
 	public Collection<PlantType> populatePlantTypes(){
 		return this.plantR.findPlantTypes();
 	}
-	
-	@ModelAttribute("owner")
-	public Owner findOwner(@PathVariable("ownerId") int ownerId) {
-		return this.owners.findById(ownerId);
-	}
-	
+		
 	@GetMapping("plants")
 	public String processFindForm(Model model) {
 		Collection<Plant> plantList = plantR.findAll();

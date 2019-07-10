@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package br.com.dbserver.sensorumidade.owner;
+package br.com.dbserver.sensorumidade.plant;
 
 import static org.mockito.BDDMockito.given;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
@@ -33,8 +33,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
-import br.com.dbserver.sensorumidade.owner.Owner;
-import br.com.dbserver.sensorumidade.owner.OwnerRepository;
+
 import br.com.dbserver.sensorumidade.plant.Plant;
 import br.com.dbserver.sensorumidade.plant.PlantController;
 import br.com.dbserver.sensorumidade.plant.PlantRepository;
@@ -68,8 +67,6 @@ public class PlantControllerTests {
     @MockBean
     private PlantRepository pets;
 
-    @MockBean
-    private OwnerRepository owners;
 
     @Before
     public void setup() {
@@ -77,7 +74,6 @@ public class PlantControllerTests {
         flower.setId(3);
         flower.setName("Violets");
         given(this.pets.findPlantTypes()).willReturn(Lists.newArrayList(flower));
-        given(this.owners.findById(TEST_OWNER_ID)).willReturn(new Owner());
         given(this.pets.findById(TEST_PET_ID)).willReturn(new Plant());
 
     }
