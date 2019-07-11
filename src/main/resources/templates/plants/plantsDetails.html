@@ -1,18 +1,30 @@
 <!DOCTYPE html>
 
-<html xmlns:th="https://www.thymeleaf.org" 
-th:replace="~{fragments/layout :: layout (~{::body},'plants')}">
+<html xmlns:th="https://www.thymeleaf.org"
+	th:replace="~{fragments/layout :: layout (~{::body},'plants')}">
 
-  <body>
+<body>
 
-    <h2>Plants Details</h2>
+	<h2>Plants Details</h2>
 
-    <table class="table table-striped" th:object="${plant}">
-      <tr>
-        <th>Name</th>
-        <td><b th:text="*{name}"></b></td>
-      </tr>
-    </table>
+	<table class="table table-striped" th:object="${plant}">
+		<tr>
+			<th>Id</th>
+			<td>th:text="*{id}"></td>
+		</tr>
+		<tr>
+			<th>Name</th>
+			<td>th:text="*{name}"></td>
+		</tr>
+		<tr>
+			<th>Moisture minimum</th>
+			<td>th:text="*{moisture_minimum}"></td>
+		</tr>
+		<tr>
+			<th>Moisture maximum</th>
+			<td>th:text="*{moisture_maximum}"></td>
+		</tr>
+	</table>
 
-  </body>
+</body>
 </html>

@@ -1,5 +1,6 @@
 package br.com.dbserver.sensorumidade.plant;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -11,7 +12,10 @@ public class Plant extends NamedEntity {
 	
 	private static final long serialVersionUID = 1L;
 	
+	@Column(name = "moisture_minimum")
 	private int moisture_minimum;
+	
+	@Column(name = "moisture_maximum")
 	private int moisture_maximum; 
 	
 

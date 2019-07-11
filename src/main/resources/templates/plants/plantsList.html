@@ -22,7 +22,7 @@ th:replace="~{fragments/layout :: layout (~{::body},'plants')}">
                   <a th:href="@{/plants/__${plan.id}__}" th:text="${plan.id}"/></a>
               </td>
               <td>
-                  <a th:href="@{/plants/__${plan.id}__}" th:text="${plan.name}"/></a>
+                  <p th:href="@{/plants/__${plan.id}__}" th:text="${plan.name}"/></p>
               </td>
               <td>
                   <p th:href="@{/plants/__${plan.id}__}" th:text="${plan.moisture_minimum}"/></p>
