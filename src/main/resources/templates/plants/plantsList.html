@@ -10,13 +10,25 @@ th:replace="~{fragments/layout :: layout (~{::body},'plants')}">
     <table id="plants" class="table table-striped">
         <thead>
         <tr>
+        	<th style="width: 150px;">Id</th>
             <th style="width: 150px;">Name</th>
+            <th style="width: 150px;">Moisture minimum</th>
+            <th style="width: 150px;">Moisture maximum</th>
         </tr>
         </thead>
         <tbody>
           <tr th:each="plan : ${plants}">
               <td>
-                  <a th:href="@{/plants/__${plan.id}__}" th:text="${prod.name}"/></a>
+                  <a th:href="@{/plants/__${plan.id}__}" th:text="${plan.id}"/></a>
+              </td>
+              <td>
+                  <a th:href="@{/plants/__${plan.id}__}" th:text="${plan.name}"/></a>
+              </td>
+              <td>
+                  <p th:href="@{/plants/__${plan.id}__}" th:text="${plan.moisture_minimum}"/></p>
+              </td>
+              <td>
+                  <p th:href="@{/plants/__${plan.id}__}" th:text="${plan.moisture_maximum}"/></p>
               </td>
           </tr>
         </tbody>
