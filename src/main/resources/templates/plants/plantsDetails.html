@@ -1,30 +1,33 @@
 <!DOCTYPE html>
 
 <html xmlns:th="https://www.thymeleaf.org"
-	th:replace="~{fragments/layout :: layout (~{::body},'plants')}">
+  th:replace="~{fragments/layout :: layout (~{::body},'plants')}">
 
-<body>
+  <body>
+  
+  
+    <h2>Product Information</h2>
+  
+  
+    <table class="table table-striped" th:object="${plant}">
+      <tr>
+        <th>ID</th>
+        <td th:text="*{id}"></td>
+      </tr>
+      <tr>
+        <th>Nome</th>
+        <td><b th:text="*{name}"></b></td>
+      </tr>
+      <tr>
+        <th>Umidade máxima</th>
+        <td th:text="*{moisture_maximum}"></td>
+      </tr>
+      <tr>
+        <th>Umidade mínima</th>
+        <td th:text="*{moisture_minimum}"></td>
+      </tr>
+    </table>
+ 
+  </body>
 
-	<h2>Plants Details</h2>
-
-	<table class="table table-striped" th:object="${plant}">
-		<tr>
-			<th>Id</th>
-			<td>th:text="*{id}"></td>
-		</tr>
-		<tr>
-			<th>Name</th>
-			<td>th:text="*{name}"></td>
-		</tr>
-		<tr>
-			<th>Moisture minimum</th>
-			<td>th:text="*{moisture_minimum}"></td>
-		</tr>
-		<tr>
-			<th>Moisture maximum</th>
-			<td>th:text="*{moisture_maximum}"></td>
-		</tr>
-	</table>
-
-</body>
 </html>
