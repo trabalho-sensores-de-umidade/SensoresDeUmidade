@@ -65,19 +65,21 @@ ALTER TABLE visits ADD CONSTRAINT fk_visits_pets FOREIGN KEY (pet_id) REFERENCES
 CREATE INDEX visits_pet_id ON visits (pet_id);
 
 
-CREATE TABLE plants (
-  id                 INTEGER IDENTITY PRIMARY KEY,
-  name               VARCHAR(30),
-  moisture_minimum   INTEGER NOT NULL,
-  moisture_maximum   INTEGER NOT NULL,
-);
-CREATE INDEX plants_name ON plants (name);
-
 CREATE TABLE sensors (
   id                 INTEGER IDENTITY PRIMARY KEY,
   name               VARCHAR(30),
   humidity           INTEGER NOT NULL
 );
 CREATE INDEX sensors_name ON sensors (name);
+
+CREATE TABLE plants (
+  id                 INTEGER IDENTITY PRIMARY KEY,
+  name               VARCHAR(30),
+  id_sensor			 INTEGER NOT NULL,
+  moisture_minimum   INTEGER NOT NULL,
+  moisture_maximum   INTEGER NOT NULL,
+);
+ALTER TABLE plants ADD CONSTRAINT fk_plants_sensors FOREIGN KEY (id_sensor) REFERENCES sensors (id);
+CREATE INDEX plants_name ON plants (name);
 
 
