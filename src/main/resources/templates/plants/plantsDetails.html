@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{fragments/layout :: layout (~{::body},'plants')}">
+
+  <body>
+  
+  
+    <h2>Plant Information</h2>
+  
+  
+    <table class="table table-striped" th:object="${plant}">
+      <tr>
+        <th>ID</th>
+        <td th:text="*{id}"></td>
+      </tr>
+      <tr>
+        <th>Nome</th>
+        <td><b th:text="*{name}"></b></td>
+      </tr>
+      <tr>
+        <th>Umidade máxima</th>
+        <td th:text="*{moisture_maximum}"></td>
+      </tr>
+      <tr>
+        <th>Umidade mínima</th>
+        <td th:text="*{moisture_minimum}"></td>
+      </tr>
+      <tr>
+        <th>Id Sensor</th>
+        <td th:text="*{sensor}"></td>
+      </tr>
+      <tr>
+        <th>Faixa de umidade</th>
+        <td th:text="*{mensagem}"></td>
+      </tr>
+    </table>
+    
+  </body>
+
+</html>

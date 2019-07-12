@@ -82,8 +82,8 @@ public class PetTypeFormatterTests {
 			 * 
 			 */
 			private static final long serialVersionUID = 1L;
-
-			{
+            {
+            	
                 setName("Dog");
             }
         });
@@ -92,8 +92,7 @@ public class PetTypeFormatterTests {
 			 * 
 			 */
 			private static final long serialVersionUID = 1L;
-
-			{
+            {
                 setName("Bird");
             }
         });

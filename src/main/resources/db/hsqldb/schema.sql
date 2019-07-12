@@ -5,8 +5,8 @@ DROP TABLE visits IF EXISTS;
 DROP TABLE pets IF EXISTS;
 DROP TABLE types IF EXISTS;
 DROP TABLE owners IF EXISTS;
-DROP TABLE products IF EXISTS;
-
+DROP TABLE plants IF EXISTS;
+DROP TABLE sensors IF EXISTS;
 
 CREATE TABLE vets (
   id         INTEGER IDENTITY PRIMARY KEY,
@@ -64,23 +64,24 @@ CREATE TABLE visits (
 ALTER TABLE visits ADD CONSTRAINT fk_visits_pets FOREIGN KEY (pet_id) REFERENCES pets (id);
 CREATE INDEX visits_pet_id ON visits (pet_id);
 
-CREATE TABLE products (
-  id   INTEGER IDENTITY PRIMARY KEY,
-  name VARCHAR(80),
-  description CLOB(5K)  
+
+CREATE TABLE sensors (
+  id                 INTEGER IDENTITY PRIMARY KEY,
+  name               VARCHAR(30),
+  humidity           INTEGER NOT NULL,
+  mensagem 			 VARCHAR(50)
 );
-CREATE INDEX products_name ON products (name);
+CREATE INDEX sensors_name ON sensors (name);
 
-
-
-
-
-
-
-
-
-
-
-
+CREATE TABLE plants (
+  id                 INTEGER IDENTITY PRIMARY KEY,
+  name               VARCHAR(30),
+  id_sensor			 INTEGER NOT NULL,
+  moisture_minimum   INTEGER NOT NULL,
+  moisture_maximum   INTEGER NOT NULL,
+  mensagem 			 VARCHAR(50)
+);
+ALTER TABLE plants ADD CONSTRAINT fk_plants_sensors FOREIGN KEY (id_sensor) REFERENCES sensors (id);
+CREATE INDEX plants_name ON plants (name);
 
 

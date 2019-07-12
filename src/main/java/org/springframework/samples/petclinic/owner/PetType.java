@@ -27,10 +27,8 @@ import org.springframework.samples.petclinic.model.NamedEntity;
 @Entity
 @Table(name = "types")
 public class PetType extends NamedEntity {
-
-	/**
+    /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
 }

@@ -19,7 +19,6 @@ package org.springframework.samples.petclinic.owner;
 import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
@@ -36,7 +35,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.samples.petclinic.owner.Owner;
 import org.springframework.samples.petclinic.owner.OwnerController;
 import org.springframework.samples.petclinic.owner.OwnerRepository;
-import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -47,7 +45,6 @@ import org.springframework.test.web.servlet.MockMvc;
  */
 @RunWith(SpringRunner.class)
 @WebMvcTest(OwnerController.class)
-@WithMockUser(roles = "OWNER_ADMIN")
 public class OwnerControllerTests {
 
     private static final int TEST_OWNER_ID = 1;
@@ -88,7 +85,7 @@ public class OwnerControllerTests {
             .param("address", "123 Caramel Street")
             .param("city", "London")
             .param("telephone", "01316761638")
-            .with(csrf()))
+        )
             .andExpect(status().is3xxRedirection());
     }
 
@@ -98,7 +95,7 @@ public class OwnerControllerTests {
             .param("firstName", "Joe")
             .param("lastName", "Bloggs")
             .param("city", "London")
-        .with(csrf()))
+        )
             .andExpect(status().isOk())
             .andExpect(model().attributeHasErrors("owner"))
             .andExpect(model().attributeHasFieldErrors("owner", "address"))
@@ -164,7 +161,7 @@ public class OwnerControllerTests {
             .param("address", "123 Caramel Street")
             .param("city", "London")
             .param("telephone", "01616291589")
-            .with(csrf()))
+        )
             .andExpect(status().is3xxRedirection())
             .andExpect(view().name("redirect:/owners/{ownerId}"));
     }
@@ -175,7 +172,7 @@ public class OwnerControllerTests {
             .param("firstName", "Joe")
             .param("lastName", "Bloggs")
             .param("city", "London")
-            .with(csrf()))
+        )
             .andExpect(status().isOk())
             .andExpect(model().attributeHasErrors("owner"))
             .andExpect(model().attributeHasFieldErrors("owner", "address"))
