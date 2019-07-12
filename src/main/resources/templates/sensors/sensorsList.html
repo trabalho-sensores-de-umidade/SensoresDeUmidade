@@ -18,7 +18,7 @@ th:replace="~{fragments/layout :: layout (~{::body},'sensors')}">
         <tbody>
           <tr th:each="sen : ${sensors}">
               <td>
-                  <p th:href="@{/sensors/__${sen.id}__}" th:text="${sen.id}"/></p>
+                  <a th:href="@{/sensors/__${sen.id}__}" th:text="${sen.id}"/></a>
               </td>
               <td>
                   <p th:href="@{/sensors/__${sen.id}__}" th:text="${sen.name}"/></p>

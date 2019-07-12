@@ -14,4 +14,6 @@ public interface PlantRepository extends Repository<Plant, Integer> {
     //@Query("SELECT p.id FROM Plants p join Sensors s WHERE p.id =s.id")
     @Transactional(readOnly = true)
    	Plant findById(@Param("id") Integer id);
+
+	void save(Plant plant);
 }

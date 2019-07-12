@@ -24,13 +24,13 @@ class PlantController {
 		return "plants/plantsList";
 	}
 	
-
-	
 	@GetMapping("/plants/{plantId}")
 	public ModelAndView showPlant(@PathVariable("plantId") int plantId) {
         ModelAndView mav = new ModelAndView("plants/plantsDetails");
         mav.addObject(this.plants.findById(plantId));
         return mav;		
+        
 	}
+
 
 }

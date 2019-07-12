@@ -6,7 +6,7 @@
   <body>
   
   
-    <h2>Product Information</h2>
+    <h2>Plant Information</h2>
   
   
     <table class="table table-striped" th:object="${plant}">
@@ -30,8 +30,12 @@
         <th>Id Sensor</th>
         <td th:text="*{sensor}"></td>
       </tr>
+      <tr>
+        <th>Faixa de umidade</th>
+        <td th:text="*{mensagem}"></td>
+      </tr>
     </table>
- 
+    
   </body>
 
 </html>

@@ -11,17 +11,28 @@ import org.springframework.samples.petclinic.sensor.HumiditySensor;
 
 @Entity
 @Table(name = "plants")
-public class Plant extends NamedEntity{
+public class Plant extends NamedEntity {
 
 	private static final long serialVersionUID = 1L;
 
 	@Column(name = "moisture_maximum")
 	private int moisture_maximum;
-	
+
 	@Column(name = "moisture_minimum")
 	private int moisture_minimum;
 
 	private Integer id_sensor;
+
+	@Column(name = "mensagem")
+	private String mensagem;
+
+	public String getMensagem() {
+		return mensagem;
+	}
+
+	public void setMensagem(String mensagem) {
+		this.mensagem = mensagem;
+	}
 
 	public int getMoisture_maximum() {
 		return moisture_maximum;
@@ -46,6 +57,5 @@ public class Plant extends NamedEntity{
 	public void setSensor(Integer sensor) {
 		this.id_sensor = sensor;
 	}
-	
-		
+
 }

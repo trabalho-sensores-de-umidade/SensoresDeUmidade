@@ -52,15 +52,15 @@ INSERT INTO visits VALUES (2, 8, '2013-01-02', 'rabies shot');
 INSERT INTO visits VALUES (3, 8, '2013-01-03', 'neutered');
 INSERT INTO visits VALUES (4, 7, '2013-01-04', 'spayed');
 
-INSERT INTO sensors VALUES (1, 'Sensor1', 60);
-INSERT INTO sensors VALUES (2, 'Sensor2', 20);
-INSERT INTO sensors VALUES (3, 'Sensor3', 80);
-INSERT INTO sensors VALUES (4, 'Sensor4', 40);
-INSERT INTO sensors VALUES (5, 'Sensor5', 20);
+INSERT INTO sensors VALUES (1, 'Sensor1', 60, '');
+INSERT INTO sensors VALUES (2, 'Sensor2', 20, '');
+INSERT INTO sensors VALUES (3, 'Sensor3', 80, '');
+INSERT INTO sensors VALUES (4, 'Sensor4', 40, '');
+INSERT INTO sensors VALUES (5, 'Sensor5', 20, '');
 
-INSERT INTO plants VALUES (1, 'Strawberry', 1, 60, 80);
-INSERT INTO plants VALUES (2, 'Cacti', 2, 20, 50);
-INSERT INTO plants VALUES (3, 'Mushrooms', 3, 80, 90);
-INSERT INTO plants VALUES (4, 'Violets', 4, 40, 80);
-INSERT INTO plants VALUES (5, 'Lavender', 5, 20, 30);
+INSERT INTO plants VALUES (1, 'Strawberry', 1, 60, 80, '');
+INSERT INTO plants VALUES (2, 'Cacti', 2, 20, 50, '');
+INSERT INTO plants VALUES (3, 'Mushrooms', 3, 80, 90, '');
+INSERT INTO plants VALUES (4, 'Violets', 4, 40, 80, '');
+INSERT INTO plants VALUES (5, 'Lavender', 5, 20, 30, '');
 

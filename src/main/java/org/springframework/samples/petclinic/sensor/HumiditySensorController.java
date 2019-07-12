@@ -29,12 +29,12 @@ public class HumiditySensorController {
 		return "sensors/sensorsList";
 	}
 		
-//	@GetMapping("/sensors/{sensorId}")
-//	public ModelAndView showSensor(@PathVariable("sensorId") int sensorId) {
-//        ModelAndView mav = new ModelAndView("sensors/sensorsDetails");
-//        mav.addObject(this.sensors.findById(sensorId));
-//        return mav;		
-//	}
+	@GetMapping("/sensors/{sensorId}")
+	public ModelAndView showSensor(@PathVariable("sensorId") int sensorId) {
+        ModelAndView mav = new ModelAndView("sensors/sensorsDetails");
+        mav.addObject(this.sensors.findById(sensorId));
+        return mav;		
+	}
 	
 	
 		/*@GetMapping("/plantSensor")

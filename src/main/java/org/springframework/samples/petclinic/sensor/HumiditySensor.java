@@ -15,8 +15,17 @@ public class HumiditySensor extends NamedEntity{
 	
     @Column(name = "humidity")
     private int humidity;
+    private String mensagem;
     
-   	public int getHumidity() {
+   	public String getMensagem() {
+		return mensagem;
+	}
+
+	public void setMensagem(String mensagem) {
+		this.mensagem = mensagem;
+	}
+
+	public int getHumidity() {
 		return humidity;
 	}
 	
