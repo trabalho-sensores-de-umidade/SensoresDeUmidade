@@ -32,5 +32,12 @@ public class HumiditySensor extends NamedEntity{
 	public void setHumidity(int humidity) {
 		this.humidity = humidity;
 	}
+
+	@Override
+	public String toString() {
+		return String.format("HumiditySensor [humidity=%s, mensagem=%s]", humidity, mensagem);
+	}
+	
+	
 	
 }

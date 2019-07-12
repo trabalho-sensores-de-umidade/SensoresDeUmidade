@@ -2,12 +2,9 @@ package org.springframework.samples.petclinic.plant;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.samples.petclinic.model.NamedEntity;
-import org.springframework.samples.petclinic.sensor.HumiditySensor;
 
 @Entity
 @Table(name = "plants")
@@ -57,5 +54,13 @@ public class Plant extends NamedEntity {
 	public void setSensor(Integer sensor) {
 		this.id_sensor = sensor;
 	}
+
+	@Override
+	public String toString() {
+		return String.format("Plant [moisture_maximum=%s, moisture_minimum=%s, id_sensor=%s, mensagem=%s]",
+				moisture_maximum, moisture_minimum, id_sensor, mensagem);
+	}
+	
+	
 
 }

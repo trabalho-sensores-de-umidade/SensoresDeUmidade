@@ -6,6 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.samples.petclinic.plant.Plant;
 import org.springframework.samples.petclinic.sensor.HumiditySensor;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 //import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,24 +24,30 @@ public class SensorRestController {
 	private SensorService sensorservice;
 	
 	@RequestMapping(value = "/{sensorId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@Transactional
 	public ResponseEntity<Void> updateSensor(@PathVariable("sensorId") int sensorId, HumiditySensor sensor, UriComponentsBuilder ucBuilder){
 		HumiditySensor currentsensor = this.sensorservice.findHumiditySensorById(sensorId);
 		Plant currentplant = this.sensorservice.findPlantById(sensorId);
 		if(currentsensor == null){return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);}
 		
-		if(currentsensor.getHumidity() < currentplant.getMoisture_minimum() || currentsensor.getHumidity() > currentplant.getMoisture_maximum()) {
-			currentsensor.setMensagem("A umidade da planta esta fora da faixa ideal");
-			currentplant.setMensagem("A umidade da planta esta fora da faixa ideal");
-		}else {
-			currentsensor.setMensagem("A umidade da planta esta dentro da faixa ideal");
-			currentplant.setMensagem("A umidade da planta esta dentro da faixa ideal");
-		}
+
 		currentsensor.setId(sensor.getId());
 		//currentsensor.setName(sensor.getName());
 		currentsensor.setHumidity(sensor.getHumidity());
 		
+		if(currentsensor.getHumidity() < currentplant.getMoisture_minimum() || 
+				currentsensor.getHumidity() > currentplant.getMoisture_maximum()) {
+			currentsensor.setMensagem("A umidade da planta esta fora da faixa ideal");
+			currentplant.setMensagem("A umidade da planta esta fora da faixa ideal");
+			
+		}else {
+			currentsensor.setMensagem("A umidade da planta esta dentro da faixa ideal");
+			currentplant.setMensagem("A umidade da planta esta dentro da faixa ideal");
+		}
 		this.sensorservice.saveHumiditySensor(currentsensor);
 		this.sensorservice.savePlant(currentplant);
+		
+		
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
 	

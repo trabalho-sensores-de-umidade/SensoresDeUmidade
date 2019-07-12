@@ -2,7 +2,6 @@ package org.springframework.samples.petclinic.sensor;
 
 import java.util.Collection;
 
-import org.springframework.samples.petclinic.plant.PlantRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
