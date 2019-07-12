@@ -29,9 +29,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class PetClinicApplication {
-	
-//	@Autowired
-//	private HumiditySensor sensor;
+
 
     public static void main(String[] args) {
         SpringApplication.run(PetClinicApplication.class, args);

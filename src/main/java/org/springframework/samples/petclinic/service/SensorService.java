@@ -7,9 +7,12 @@ import org.springframework.samples.petclinic.sensor.HumiditySensor;
 
 public interface SensorService {
 
-//	HumiditySensor findHumiditySensorById(int id) throws DataAccessException;
-//	Collection<HumiditySensor> findAllHumiditySensor() throws DataAccessException;
+	HumiditySensor findHumiditySensorById(int sensorId) throws DataAccessException;
+	Collection<HumiditySensor> findAllHumiditySensor() throws DataAccessException;
 	void saveHumiditySensor(HumiditySensor sensor) throws DataAccessException;
-	//void deleteHumiditySensor(HumiditySensor sensor) throws DataAccessException;
+	void deleteHumiditySensor(HumiditySensor sensor) throws DataAccessException;
+
+	
+	
 	
 }

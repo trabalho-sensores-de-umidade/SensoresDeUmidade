@@ -4,6 +4,8 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.orm.ObjectRetrievalFailureException;
 import org.springframework.samples.petclinic.sensor.HumiditySensor;
 import org.springframework.samples.petclinic.sensor.HumiditySensorRepository;
 import org.springframework.stereotype.Service;
@@ -19,28 +21,33 @@ public class SensorServiceImpl implements SensorService {
 		this.sensorRepository = sensorRepository;
 	}
 
-//	@Override
-//	public HumiditySensor findHumiditySensorById(int id) throws DataAccessException {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+	@Override
+	public HumiditySensor findHumiditySensorById(int sensorId) throws DataAccessException {
+		HumiditySensor sensor = null;
+		try {
+			sensor = sensorRepository.findById(sensorId);
+		} catch (ObjectRetrievalFailureException|EmptyResultDataAccessException e) {
+			return null;
+		}
+		return sensor;
+	}
 
-//	@Override
-//	@Transactional(readOnly = true)
-//	public Collection<HumiditySensor> findAllHumiditySensor() throws DataAccessException {
-//		return sensorRepository.findAll();
-//	}
+	@Override
+	@Transactional(readOnly = true)
+	public Collection<HumiditySensor> findAllHumiditySensor() throws DataAccessException {
+		return sensorRepository.findAll();
+	}
 
 	@Override
 	public void saveHumiditySensor(HumiditySensor sensor) throws DataAccessException {
 		sensorRepository.save(sensor);		
 	}
 
-//	@Override
-//	@Transactional(readOnly = true)
-//	public void deleteHumiditySensor(HumiditySensor sensor) throws DataAccessException {
-//		sensorRepository.delete(sensor);		
-//	}
+	@Override
+	@Transactional(readOnly = true)
+	public void deleteHumiditySensor(HumiditySensor sensor) throws DataAccessException {
+		sensorRepository.delete(sensor);		
+	}
 
 	
 }
