@@ -6,6 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.samples.petclinic.sensor.HumiditySensor;
 import org.springframework.web.bind.annotation.CrossOrigin;
+//import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,9 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
-@RequestMapping("/sensors")
-//@CrossOrigin("${origin-allowed}") ERRO
-//@CrossOrigin(exposedHeaders = "errors, content-type")
+@RequestMapping("/service")
+@CrossOrigin(exposedHeaders = "errors, content-type")
 public class SensorRestController {
 	
 	@Autowired
@@ -27,7 +27,7 @@ public class SensorRestController {
 		if(currentsensor == null){return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);}
 		
 		currentsensor.setId(sensor.getId());
-		currentsensor.setName(sensor.getName());
+		//currentsensor.setName(sensor.getName());
 		currentsensor.setHumidity(sensor.getHumidity());
 		
 		this.sensorservice.saveHumiditySensor(currentsensor);
@@ -41,15 +41,15 @@ public class SensorRestController {
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 	
-//	@RequestMapping(value = "/{sensorId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-//	public ResponseEntity<HumiditySensor> getHumiditySensor(@PathVariable("sensorId") int sensorId) {
-//		HumiditySensor sensor = null;
-//		sensor = this.sensorservice.findHumiditySensorById(sensorId);
-//		if (sensor == null) {
-//			return new ResponseEntity<HumiditySensor>(HttpStatus.NOT_FOUND);
-//		}
-//		return new ResponseEntity<HumiditySensor>(sensor, HttpStatus.OK);
-//	}
+	@RequestMapping(value = "/{sensorId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<HumiditySensor> getHumiditySensor(@PathVariable("sensorId") int sensorId) {
+		HumiditySensor sensor = null;
+		sensor = this.sensorservice.findHumiditySensorById(sensorId);
+		if (sensor == null) {
+			return new ResponseEntity<HumiditySensor>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<HumiditySensor>(sensor, HttpStatus.OK);
+	}
 	
 	
 }
