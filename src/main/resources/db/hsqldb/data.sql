@@ -58,3 +58,8 @@ INSERT INTO plants VALUES (3, 'Mushrooms', 80, 90);
 INSERT INTO plants VALUES (4, 'Violets', 40, 80);
 INSERT INTO plants VALUES (5, 'Lavender', 20, 30);
 
+INSERT INTO sensors VALUES (1, 'Sensor1', 60);
+INSERT INTO sensors VALUES (2, 'Sensor2', 20);
+INSERT INTO sensors VALUES (3, 'Sensor3', 80);
+INSERT INTO sensors VALUES (4, 'Sensor4', 40);
+INSERT INTO sensors VALUES (5, 'Sensor5', 20);
