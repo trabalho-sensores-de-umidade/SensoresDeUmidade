@@ -1,8 +1,8 @@
 package org.springframework.samples.petclinic.plant;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -21,8 +21,7 @@ public class Plant extends NamedEntity{
 	@Column(name = "moisture_minimum")
 	private int moisture_minimum;
 
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "plant")
-    private HumiditySensor sensor;
+	private Integer id_sensor;
 
 	public int getMoisture_maximum() {
 		return moisture_maximum;
@@ -40,12 +39,12 @@ public class Plant extends NamedEntity{
 		this.moisture_minimum = moisture_minimum;
 	}
 
-	public HumiditySensor getSensor() {
-		return sensor;
+	public Integer getSensor() {
+		return id_sensor;
 	}
 
-	public void setSensor(HumiditySensor sensor) {
-		this.sensor = sensor;
+	public void setSensor(Integer sensor) {
+		this.id_sensor = sensor;
 	}
 	
 		

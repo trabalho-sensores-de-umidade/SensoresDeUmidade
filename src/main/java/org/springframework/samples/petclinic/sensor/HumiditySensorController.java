@@ -14,12 +14,12 @@ import org.springframework.web.servlet.ModelAndView;
 public class HumiditySensorController {
 
 	private final HumiditySensorRepository sensors;
-	private final PlantRepository plants;
 	
-	public HumiditySensorController(HumiditySensorRepository sensors, PlantRepository plants) {
+	
+	public HumiditySensorController(HumiditySensorRepository sensors) {
 		super();
 		this.sensors = sensors;
-		this.plants = plants;
+	
 	}
 
 	@GetMapping("/sensors")
@@ -35,7 +35,6 @@ public class HumiditySensorController {
 //        mav.addObject(this.sensors.findById(sensorId));
 //        return mav;		
 //	}
-//	
 	
 	
 		/*@GetMapping("/plantSensor")

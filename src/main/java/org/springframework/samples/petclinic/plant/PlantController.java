@@ -24,6 +24,7 @@ class PlantController {
 		return "plants/plantsList";
 	}
 	
+
 	
 	@GetMapping("/plants/{plantId}")
 	public ModelAndView showPlant(@PathVariable("plantId") int plantId) {

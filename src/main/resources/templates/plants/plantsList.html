@@ -14,6 +14,7 @@ th:replace="~{fragments/layout :: layout (~{::body},'plants')}">
             <th style="width: 150px;">Name</th>
             <th style="width: 150px;">Moisture minimum</th>
             <th style="width: 150px;">Moisture maximum</th>
+            <th style="width: 150px;">Id Sensor</th>
         </tr>
         </thead>
         <tbody>
@@ -29,6 +30,9 @@ th:replace="~{fragments/layout :: layout (~{::body},'plants')}">
               </td>
               <td>
                   <p th:href="@{/plants/__${plan.id}__}" th:text="${plan.moisture_maximum}"/></p>
+              </td>
+              <td>
+                  <p th:href="@{/plants/__${plan.id}__}" th:text="${plan.sensor}"/></p>
               </td>
           </tr>
         </tbody>
