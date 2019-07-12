@@ -5,7 +5,8 @@ DROP TABLE visits IF EXISTS;
 DROP TABLE pets IF EXISTS;
 DROP TABLE types IF EXISTS;
 DROP TABLE owners IF EXISTS;
-
+DROP TABLE plants IF EXISTS;
+DROP TABLE sensors IF EXISTS;
 
 CREATE TABLE vets (
   id         INTEGER IDENTITY PRIMARY KEY,
@@ -71,4 +72,12 @@ CREATE TABLE plants (
   moisture_maximum   INTEGER NOT NULL,
 );
 CREATE INDEX plants_name ON plants (name);
+
+CREATE TABLE sensors (
+  id                 INTEGER IDENTITY PRIMARY KEY,
+  name               VARCHAR(30),
+  humidity           INTEGER NOT NULL
+);
+CREATE INDEX sensors_name ON sensors (name);
+
 
