@@ -19,20 +19,34 @@ package org.springframework.samples.petclinic;
 //import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.samples.petclinic.service.ServiceEmail;
 //import org.springframework.samples.petclinic.sensor.HumiditySensor;
+import org.springframework.web.client.RestTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-/**
- * PetClinic Spring Boot Application.
- *
- * @author Dave Syer
- *
- */
+
 @SpringBootApplication
 public class PetClinicApplication {
-
-
+ 
+	private static final Logger log = LoggerFactory.getLogger(PetClinicApplication.class);
+	
     public static void main(String[] args) {
         SpringApplication.run(PetClinicApplication.class, args);
     }
+    
+	@Bean
+	public RestTemplate restTemplate(RestTemplateBuilder builder) {
+		log.info(" *** **** Creating a REST Template");
+		return builder.build();
+	}
+
+	@Bean
+	public ServiceEmail sensorService(RestTemplate restTemplate) {
+		log.info(" *** **** Creating a Sensor service");
+		return new ServiceEmail(restTemplate);
+	}
 
 }
