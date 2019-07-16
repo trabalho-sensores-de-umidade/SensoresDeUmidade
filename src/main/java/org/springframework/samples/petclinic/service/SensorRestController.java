@@ -8,7 +8,6 @@ import org.springframework.samples.petclinic.plant.Plant;
 import org.springframework.samples.petclinic.sensor.HumiditySensor;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
-//import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,6 +21,12 @@ public class SensorRestController {
 	
 	@Autowired
 	private SensorService sensorservice;
+		
+	@Autowired 
+	private ServiceEmail service;
+	
+	@Autowired
+	private EmailController email;
 	
 	@RequestMapping(value = "/{sensorId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@Transactional
@@ -39,18 +44,30 @@ public class SensorRestController {
 				currentsensor.getHumidity() > currentplant.getMoisture_maximum()) {
 			currentsensor.setMensagem("A umidade da planta esta fora da faixa ideal");
 			currentplant.setMensagem("A umidade da planta esta fora da faixa ideal");
+			email.setPlantId(currentplant.getId());
+			email.setPlantName(currentplant.getName());
+			email.setMoisture_minimum(currentplant.getMoisture_minimum());
+			email.setMoisture_maximum(currentplant.getMoisture_maximum());
+			
+			email.setSensorId(currentsensor.getId());
+			email.setSensorName(currentsensor.getName());
+			email.setHumidity(currentsensor.getHumidity());
+			service.getEmail();
 			
 		}else {
 			currentsensor.setMensagem("A umidade da planta esta dentro da faixa ideal");
 			currentplant.setMensagem("A umidade da planta esta dentro da faixa ideal");
 		}
 		this.sensorservice.saveHumiditySensor(currentsensor);
-		this.sensorservice.savePlant(currentplant);
+		this.sensorservice.savePlant(currentplant); 
 		
 		
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
 	
+
+    
+ 	
 	@RequestMapping(value = "/{sensorId}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Void> addSensor(@PathVariable("sensorId") int sensorId){
 		HumiditySensor sensor = this.sensorservice.findHumiditySensorById(sensorId);
