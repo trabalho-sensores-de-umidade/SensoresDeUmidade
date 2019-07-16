@@ -25,6 +25,9 @@ public class SensorRestController {
 	@Autowired 
 	private ServiceEmail service;
 	
+	@Autowired
+	private EmailController email;
+	
 	@RequestMapping(value = "/{sensorId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@Transactional
 	public ResponseEntity<Void> updateSensor(@PathVariable("sensorId") int sensorId, HumiditySensor sensor, UriComponentsBuilder ucBuilder){
@@ -41,6 +44,14 @@ public class SensorRestController {
 				currentsensor.getHumidity() > currentplant.getMoisture_maximum()) {
 			currentsensor.setMensagem("A umidade da planta esta fora da faixa ideal");
 			currentplant.setMensagem("A umidade da planta esta fora da faixa ideal");
+			email.setPlantId(currentplant.getId());
+			email.setPlantName(currentplant.getName());
+			email.setMoisture_minimum(currentplant.getMoisture_minimum());
+			email.setMoisture_maximum(currentplant.getMoisture_maximum());
+			
+			email.setSensorId(currentsensor.getId());
+			email.setSensorName(currentsensor.getName());
+			email.setHumidity(currentsensor.getHumidity());
 			service.getEmail();
 			
 		}else {
