@@ -12,39 +12,39 @@ public class Plant extends NamedEntity {
 
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "moisture_maximum")
-	private int moisture_maximum;
+	@Column(name = "humidity_maximum")
+	private int humidity_maximum;
 
-	@Column(name = "moisture_minimum")
-	private int moisture_minimum;
+	@Column(name = "humidity_minimum")
+	private int humidity_minimum;
 
 	private Integer id_sensor;
 
-	@Column(name = "mensagem")
-	private String mensagem;
+	@Column(name = "message")
+	private String message;
 
-	public String getMensagem() {
-		return mensagem;
+	public String getMessage() {
+		return message;
 	}
 
-	public void setMensagem(String mensagem) {
-		this.mensagem = mensagem;
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	
+	public int getHumidity_maximum() {
+		return humidity_maximum;
 	}
 
-	public int getMoisture_maximum() {
-		return moisture_maximum;
+	public void setHumidity_maximum(int humidity_maximum) {
+		this.humidity_maximum = humidity_maximum;
 	}
 
-	public void setMoisture_maximum(int moisture_maximum) {
-		this.moisture_maximum = moisture_maximum;
+	public int getHumidity_minimum() {
+		return humidity_minimum;
 	}
 
-	public int getMoisture_minimum() {
-		return moisture_minimum;
-	}
-
-	public void setMoisture_minimum(int moisture_minimum) {
-		this.moisture_minimum = moisture_minimum;
+	public void setHumidity_minimum(int humidity_minimum) {
+		this.humidity_minimum = humidity_minimum;
 	}
 
 	public Integer getSensor() {
@@ -57,10 +57,9 @@ public class Plant extends NamedEntity {
 
 	@Override
 	public String toString() {
-		return String.format("Plant [moisture_maximum=%s, moisture_minimum=%s, id_sensor=%s, mensagem=%s]",
-				moisture_maximum, moisture_minimum, id_sensor, mensagem);
+		return "Plant [humidity_maximum=" + humidity_maximum + ", humidity_minimum=" + humidity_minimum + ", id_sensor="
+				+ id_sensor + ", message=" + message + "]";
 	}
-	
-	
 
+	
 }

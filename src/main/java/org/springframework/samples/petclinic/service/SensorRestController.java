@@ -40,14 +40,14 @@ public class SensorRestController {
 		//currentsensor.setName(sensor.getName());
 		currentsensor.setHumidity(sensor.getHumidity());
 		
-		if(currentsensor.getHumidity() < currentplant.getMoisture_minimum() || 
-				currentsensor.getHumidity() > currentplant.getMoisture_maximum()) {
-			currentsensor.setMensagem("A umidade da planta esta fora da faixa ideal");
-			currentplant.setMensagem("A umidade da planta esta fora da faixa ideal");
+		if(currentsensor.getHumidity() < currentplant.getHumidity_minimum() || 
+				currentsensor.getHumidity() > currentplant.getHumidity_minimum()) {
+			currentsensor.setMessage("The humidity of the plant is outside the ideal range");
+			currentplant.setMessage("The humidity of the plant is outside the ideal range");
 			email.setPlantId(currentplant.getId());
 			email.setPlantName(currentplant.getName());
-			email.setMoisture_minimum(currentplant.getMoisture_minimum());
-			email.setMoisture_maximum(currentplant.getMoisture_maximum());
+			email.setHumidity_minimum(currentplant.getHumidity_minimum());
+			email.setHumidity_maximum(currentplant.getHumidity_maximum());
 			
 			email.setSensorId(currentsensor.getId());
 			email.setSensorName(currentsensor.getName());
@@ -55,8 +55,8 @@ public class SensorRestController {
 			service.getEmail();
 			
 		}else {
-			currentsensor.setMensagem("A umidade da planta esta dentro da faixa ideal");
-			currentplant.setMensagem("A umidade da planta esta dentro da faixa ideal");
+			currentsensor.setMessage("The humidity of the plant is within the ideal range");
+			currentplant.setMessage("The humidity of the plant is within the ideal range");
 		}
 		this.sensorservice.saveHumiditySensor(currentsensor);
 		this.sensorservice.savePlant(currentplant); 

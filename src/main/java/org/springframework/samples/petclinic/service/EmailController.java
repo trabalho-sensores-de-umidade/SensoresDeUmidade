@@ -12,100 +12,40 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class EmailController{
-	
-	@Autowired 
+public class EmailController {
+
+	@Autowired
 	private JavaMailSender mailSender;
-	
+
 	private int plantId;
 	private String plantName;
-	private int moisture_minimum;
-	private int moisture_maximum;
-	
+	private int humidity_minimum;
+	private int humidity_maximum;
+
 	private int sensorId;
 	private String sensorName;
 	private int humidity;
-	
+
 	@RequestMapping(path = "/email-send", method = RequestMethod.GET)
-    public String sendMail() {
-        try {
-        	MimeMessage mail = mailSender.createMimeMessage();
+	public String sendMail() {
+		try {
+			MimeMessage mail = mailSender.createMimeMessage();
 
-            MimeMessageHelper helper = new MimeMessageHelper( mail );
-            helper.setTo( "desafiodb2019@gmail.com" );
-            helper.setSubject( "Aviso umidade planta: " + getPlantName());
-            helper.setText("<p>O sensor "+ getSensorName() + " id: " + getSensorId() + " esta indicando que a umidade da planta "+ getPlantName() + " esta fora da faixa ideal.</p>"
-            		+ "<p>Umidade atual: "+ getHumidity() + "%" + "." + "</p><p>Intervalo de umidade ideal "+
-            		"umidade minima: " + getMoisture_minimum() + "%" + " umidade máxima: " + getMoisture_maximum() + "%" + "." + "</p>", true);
-            mailSender.send(mail);
-            return "Email enviado com sucesso!";
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "Erro ao enviar email.";
-        }
-    }
-
-	
-	
-	public int getHumidity() {
-		return humidity;
+			MimeMessageHelper helper = new MimeMessageHelper(mail);
+			helper.setTo("desafiodb2019@gmail.com");
+			helper.setSubject("Plant humidity warning: " + getPlantName());
+			helper.setText("<p>The sensor " + getSensorName() + " id: " + getSensorId()
+					+ " is indicating that the moisture of the plant " + getPlantName()
+					+ " is outside the ideal range.</p>" + "<p>Current humidity: " + getHumidity() + "%" + "."
+					+ "</p><p>Ideal humidity range " + "minimum humidity: " + getHumidity_minimum() + "%"
+					+ " maximum humidity: " + getHumidity_maximum() + "%" + "." + "</p>", true);
+			mailSender.send(mail);
+			return "Email successfully sent!";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "Error sending email.";
+		}
 	}
-
-
-
-	public void setHumidity(int humidity) {
-		this.humidity = humidity;
-	}
-
-
-
-	public String getPlantName() {
-		return plantName;
-	}
-
-
-
-	public void setPlantName(String plantName) {
-		this.plantName = plantName;
-	}
-
-
-
-	public int getMoisture_minimum() {
-		return moisture_minimum;
-	}
-
-
-
-	public void setMoisture_minimum(int moisture_minimum) {
-		this.moisture_minimum = moisture_minimum;
-	}
-
-
-
-	public int getMoisture_maximum() {
-		return moisture_maximum;
-	}
-
-
-
-	public void setMoisture_maximum(int moisture_maximum) {
-		this.moisture_maximum = moisture_maximum;
-	}
-
-
-
-	public String getSensorName() {
-		return sensorName;
-	}
-
-
-
-	public void setSensorName(String sensorName) {
-		this.sensorName = sensorName;
-	}
-
-
 
 	public int getPlantId() {
 		return plantId;
@@ -115,12 +55,51 @@ public class EmailController{
 		this.plantId = plantId;
 	}
 
+	public String getPlantName() {
+		return plantName;
+	}
+
+	public void setPlantName(String plantName) {
+		this.plantName = plantName;
+	}
+
+	public int getHumidity_minimum() {
+		return humidity_minimum;
+	}
+
+	public void setHumidity_minimum(int humidity_minimum) {
+		this.humidity_minimum = humidity_minimum;
+	}
+
+	public int getHumidity_maximum() {
+		return humidity_maximum;
+	}
+
+	public void setHumidity_maximum(int humidity_maximum) {
+		this.humidity_maximum = humidity_maximum;
+	}
+
 	public int getSensorId() {
 		return sensorId;
 	}
 
 	public void setSensorId(int sensorId) {
 		this.sensorId = sensorId;
-	}	
-	
+	}
+
+	public String getSensorName() {
+		return sensorName;
+	}
+
+	public void setSensorName(String sensorName) {
+		this.sensorName = sensorName;
+	}
+
+	public int getHumidity() {
+		return humidity;
+	}
+
+	public void setHumidity(int humidity) {
+		this.humidity = humidity;
+	}
 }

@@ -15,14 +15,14 @@ public class HumiditySensor extends NamedEntity{
 	
     @Column(name = "humidity")
     private int humidity;
-    private String mensagem;
+    private String message;
     
-   	public String getMensagem() {
-		return mensagem;
+	public String getMessage() {
+		return message;
 	}
 
-	public void setMensagem(String mensagem) {
-		this.mensagem = mensagem;
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 	public int getHumidity() {
@@ -35,7 +35,7 @@ public class HumiditySensor extends NamedEntity{
 
 	@Override
 	public String toString() {
-		return String.format("HumiditySensor [humidity=%s, mensagem=%s]", humidity, mensagem);
+		return String.format("HumiditySensor [humidity=%s, message=%s]", humidity, message);
 	}
 	
 	

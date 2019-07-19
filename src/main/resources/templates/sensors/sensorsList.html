@@ -5,14 +5,14 @@ th:replace="~{fragments/layout :: layout (~{::body},'sensors')}">
 
   <body>
 
-    <h2>Sensors</h2>
+    <h2 th:text="#{sensors}">Sensors</h2>
 
     <table id="sensors" class="table table-striped">
         <thead>
         <tr>
         	<th style="width: 150px;">Id</th>
-            <th style="width: 150px;">Name</th>
-            <th style="width: 150px;">Umidade</th>
+            <th th:text="#{name}" style="width: 150px;">Name</th>
+            <th th:text="#{humidity}" style="width: 150px;">Humidity</th>
         </tr>
         </thead>
         <tbody>

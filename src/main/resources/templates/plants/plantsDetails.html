@@ -6,7 +6,7 @@
   <body>
   
   
-    <h2>Plant Information</h2>
+    <h2 th:text="#{plant_information}">Plant Information</h2>
   
   
     <table class="table table-striped" th:object="${plant}">
@@ -15,24 +15,24 @@
         <td th:text="*{id}"></td>
       </tr>
       <tr>
-        <th>Nome</th>
+        <th th:text="#{name}">Name</th>
         <td><b th:text="*{name}"></b></td>
       </tr>
       <tr>
-        <th>Umidade máxima</th>
-        <td th:text="*{moisture_maximum}"></td>
+        <th th:text="#{humidity_maximum}">Maximum Humidity</th>
+        <td th:text="*{humidity_maximum}"></td>
       </tr>
       <tr>
-        <th>Umidade mínima</th>
-        <td th:text="*{moisture_minimum}"></td>
+        <th th:text="#{humidity_minimum}">Minimum Humidity</th>
+        <td th:text="*{humidity_minimum}"></td>
       </tr>
       <tr>
         <th>Id Sensor</th>
         <td th:text="*{sensor}"></td>
       </tr>
       <tr>
-        <th>Faixa de umidade</th>
-        <td th:text="*{mensagem}"></td>
+        <th th:text="#{humidity_range}">Humidity Range</th>
+        <td th:text="*{message}"></td>
       </tr>
     </table>
     

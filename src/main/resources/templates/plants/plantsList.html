@@ -5,15 +5,15 @@ th:replace="~{fragments/layout :: layout (~{::body},'plants')}">
 
   <body>
 
-    <h2>Plants</h2>
+    <h2 th:text="#{plants}">Plants</h2>
 
     <table id="plants" class="table table-striped">
         <thead>
         <tr>
         	<th style="width: 150px;">Id</th>
-            <th style="width: 150px;">Name</th>
-            <th style="width: 150px;">Moisture minimum</th>
-            <th style="width: 150px;">Moisture maximum</th>
+            <th th:text="#{name}" style="width: 150px;">Name</th>
+            <th th:text="#{humidity_minimum}" style="width: 150px;">Humidity Minimum</th>
+            <th th:text="#{humidity_maximum}" style="width: 150px;">Humidity Maximum</th>
             <th style="width: 150px;">Id Sensor</th>
         </tr>
         </thead>
@@ -26,10 +26,10 @@ th:replace="~{fragments/layout :: layout (~{::body},'plants')}">
                   <p th:href="@{/plants/__${plan.id}__}" th:text="${plan.name}"/></p>
               </td>
               <td>
-                  <p th:href="@{/plants/__${plan.id}__}" th:text="${plan.moisture_minimum}"/></p>
+                  <p th:href="@{/plants/__${plan.id}__}" th:text="${plan.humidity_minimum}"/></p>
               </td>
               <td>
-                  <p th:href="@{/plants/__${plan.id}__}" th:text="${plan.moisture_maximum}"/></p>
+                  <p th:href="@{/plants/__${plan.id}__}" th:text="${plan.humidity_maximum}"/></p>
               </td>
               <td>
                   <p th:href="@{/plants/__${plan.id}__}" th:text="${plan.sensor}"/></p>

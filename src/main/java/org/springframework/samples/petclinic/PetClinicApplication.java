@@ -42,8 +42,7 @@ public class PetClinicApplication {
 		log.info(" *** **** Creating a REST Template");
 		return builder.build();
 	}
-	
-	
+
 	@Bean
 	public ServiceEmail sensorService(RestTemplate restTemplate) {
 		log.info(" *** **** Creating a Sensor service");

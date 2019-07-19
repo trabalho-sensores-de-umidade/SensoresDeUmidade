@@ -35,18 +35,4 @@ public class HumiditySensorController {
         return mav;		
 	}
 	
-	
-		/*@GetMapping("/plantSensor")
-	public void reader(@PathVariable("plantsId") int id) {
-		ObjectMapper mapper = new ObjectMapper();
-		try {
-			HumiditySensor reading = mapper.readValue(new URL("http://localhost:8080/sensor/{plantsId}"),
-					HumiditySensor.class);
-			System.out.println(reading);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}*/
-
 }
