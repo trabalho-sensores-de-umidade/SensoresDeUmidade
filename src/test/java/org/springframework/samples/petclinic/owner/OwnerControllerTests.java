@@ -18,7 +18,7 @@ package org.springframework.samples.petclinic.owner;
 
 //import static org.hamcrest.Matchers.hasProperty;
 //import static org.hamcrest.Matchers.is;
-//import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.given;
 //import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 //import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 //import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
@@ -26,16 +26,16 @@ package org.springframework.samples.petclinic.owner;
 //import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 //import org.assertj.core.util.Lists;
-//import org.junit.Before;
+import org.junit.Before;
 //import org.junit.Test;
-//import org.junit.runner.RunWith;
+import org.junit.runner.RunWith;
 //import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-//import org.springframework.boot.test.mock.mockito.MockBean;
-//import org.springframework.samples.petclinic.owner.Owner;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.samples.petclinic.owner.Owner;
 import org.springframework.samples.petclinic.owner.OwnerController;
-//import org.springframework.samples.petclinic.owner.OwnerRepository;
-//import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.samples.petclinic.owner.OwnerRepository;
+import org.springframework.test.context.junit4.SpringRunner;
 //import org.springframework.test.web.servlet.MockMvc;
 
 /**
@@ -43,32 +43,33 @@ import org.springframework.samples.petclinic.owner.OwnerController;
  *
  * @author Colin But
  */
-//@RunWith(SpringRunner.class)
-//@WebMvcTest(OwnerController.class)
+@RunWith(SpringRunner.class)
+@WebMvcTest(OwnerController.class)
 public class OwnerControllerTests {
 
-//    private static final int TEST_OWNER_ID = 1;
-//
+    private static final int TEST_OWNER_ID = 1;
+
 //    @Autowired
 //    private MockMvc mockMvc;
-//
-//    @MockBean
-//    private OwnerRepository owners;
-//
-//    private Owner george;
-//
-//    @Before
-//    public void setup() {
-//        george = new Owner();
-//        george.setId(TEST_OWNER_ID);
-//        george.setFirstName("George");
-//        george.setLastName("Franklin");
-//        george.setAddress("110 W. Liberty St.");
-//        george.setCity("Madison");
-//        george.setTelephone("6085551023");
-//        given(this.owners.findById(TEST_OWNER_ID)).willReturn(george);
-//    }
-//
+
+    @MockBean
+    private OwnerRepository owners;
+
+    private Owner george;
+
+    @Before
+    public void setup() {
+        george = new Owner();
+        george.setId(TEST_OWNER_ID);
+        george.setFirstName("George");
+        george.setLastName("Franklin");
+        george.setAddress("110 W. Liberty St.");
+        george.setCity("Madison");
+        george.setTelephone("6085551023");
+        george.setEmail("desafiodb2019@gmail.com");
+        given(this.owners.findById(TEST_OWNER_ID)).willReturn(george);
+    }
+
 //    @Test
 //    public void testInitCreationForm() throws Exception {
 //        mockMvc.perform(get("/owners/new"))

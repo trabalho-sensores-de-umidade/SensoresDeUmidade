@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 class PlantController {
 	private final PlantRepository plants;
-
+	
 	public PlantController(PlantRepository plants) {
 		super();
 		this.plants = plants;
@@ -27,10 +27,8 @@ class PlantController {
 	@GetMapping("/plants/{plantId}")
 	public ModelAndView showPlant(@PathVariable("plantId") int plantId) {
         ModelAndView mav = new ModelAndView("plants/plantsDetails");
-        mav.addObject(this.plants.findById(plantId));
-        return mav;		
-        
+        mav.addObject(this.plants.findById(plantId));		
+        return mav;        
 	}
-
 
 }

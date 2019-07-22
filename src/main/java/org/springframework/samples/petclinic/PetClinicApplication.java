@@ -27,19 +27,25 @@ import org.springframework.web.client.RestTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 @SpringBootApplication
 public class PetClinicApplication {
- 
+
 	private static final Logger log = LoggerFactory.getLogger(PetClinicApplication.class);
-	
-    public static void main(String[] args) {
-        SpringApplication.run(PetClinicApplication.class, args);
-    }
+
+	public static void main(String[] args) {
+		SpringApplication.run(PetClinicApplication.class, args);
+	}
+
+//	@Bean
+//	public RestTemplate restTemplate(RestTemplateBuilder builder) {
+//		log.info(" *** **** Creating a REST Template");
+//		return builder.build();
+//	}
 
 	@Bean
-	public RestTemplate restTemplate(RestTemplateBuilder builder) {
+	public RestTemplate restTemplate() {
 		log.info(" *** **** Creating a REST Template");
+		RestTemplateBuilder builder = new RestTemplateBuilder();
 		return builder.build();
 	}
 
@@ -48,6 +54,5 @@ public class PetClinicApplication {
 		log.info(" *** **** Creating a Sensor service");
 		return new ServiceEmail(restTemplate);
 	}
-		
-}
 
+}
