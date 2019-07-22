@@ -1,10 +1,15 @@
 package org.springframework.samples.petclinic.plant;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.samples.petclinic.model.NamedEntity;
+import org.springframework.samples.petclinic.sensor.HumiditySensor;
 
 @Entity
 @Table(name = "plants")
@@ -18,8 +23,9 @@ public class Plant extends NamedEntity {
 	@Column(name = "humidity_minimum")
 	private int humidity_minimum;
 
-	private Integer id_sensor;
-
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "plant")
+    private Set<HumiditySensor> sensors;
+	
 	@Column(name = "message")
 	private String message;
 
@@ -46,20 +52,20 @@ public class Plant extends NamedEntity {
 	public void setHumidity_minimum(int humidity_minimum) {
 		this.humidity_minimum = humidity_minimum;
 	}
-
-	public Integer getSensor() {
-		return id_sensor;
+	
+	public Set<HumiditySensor> getSensors() {
+		return sensors;
 	}
 
-	public void setSensor(Integer sensor) {
-		this.id_sensor = sensor;
+	public void setSensors(Set<HumiditySensor> sensors) {
+		this.sensors = sensors;
 	}
 
 	@Override
 	public String toString() {
-		return "Plant [humidity_maximum=" + humidity_maximum + ", humidity_minimum=" + humidity_minimum + ", id_sensor="
-				+ id_sensor + ", message=" + message + "]";
+		return "Plant [humidity_maximum=" + humidity_maximum + ", humidity_minimum=" + humidity_minimum + ", sensors="
+				+ sensors + ", message=" + message + "]";
 	}
-
+	
 	
 }

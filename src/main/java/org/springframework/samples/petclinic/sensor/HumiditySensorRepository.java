@@ -10,10 +10,6 @@ public interface HumiditySensorRepository extends Repository<HumiditySensor, Int
 	Collection<HumiditySensor> findAll();
 	HumiditySensor findById(@Param("id") Integer id);
 	
-    /**
-     * Save an {@link HumiditySensor} to the data store, either inserting or updating it.
-     * @param owner the {@link HumiditySensor} to save
-     */
     void save(HumiditySensor sensor);
     
 	void delete(HumiditySensor sensor);

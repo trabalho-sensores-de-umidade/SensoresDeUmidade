@@ -36,11 +36,6 @@ public class PetClinicApplication {
 		SpringApplication.run(PetClinicApplication.class, args);
 	}
 
-//	@Bean
-//	public RestTemplate restTemplate(RestTemplateBuilder builder) {
-//		log.info(" *** **** Creating a REST Template");
-//		return builder.build();
-//	}
 
 	@Bean
 	public RestTemplate restTemplate() {

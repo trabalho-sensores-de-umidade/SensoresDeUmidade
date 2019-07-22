@@ -45,7 +45,6 @@ public class PlantControllerTest {
 		strawberry.setHumidity_minimum(60);
 		strawberry.setHumidity_maximum(80);
 		strawberry.setName("Strawberry");
-		strawberry.setSensor(TEST_PLANT_ID);
 		given(this.plant.findById(TEST_PLANT_ID)).willReturn(strawberry);
 		this.mockMvc = MockMvcBuilders.standaloneSetup(plantController).build();
 	}
