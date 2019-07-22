@@ -64,17 +64,14 @@ public class SensorRestController {
 		
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
-	
 
-    
- 	
-	@RequestMapping(value = "/{sensorId}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<Void> addSensor(@PathVariable("sensorId") int sensorId){
-		HumiditySensor sensor = this.sensorservice.findHumiditySensorById(sensorId);
-		this.sensorservice.saveHumiditySensor(sensor);
-		return new ResponseEntity<Void>(HttpStatus.CREATED);
-	}
-	
+//	@RequestMapping(value = "/{sensorId}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+//	public ResponseEntity<Void> addSensor(@PathVariable("sensorId") int sensorId){
+//		HumiditySensor sensor = this.sensorservice.findHumiditySensorById(sensorId);
+//		this.sensorservice.saveHumiditySensor(sensor);
+//		return new ResponseEntity<Void>(HttpStatus.CREATED);
+//	}
+//	
 	@RequestMapping(value = "/{sensorId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<HumiditySensor> getHumiditySensor(@PathVariable("sensorId") int sensorId) {
 		HumiditySensor sensor = null;

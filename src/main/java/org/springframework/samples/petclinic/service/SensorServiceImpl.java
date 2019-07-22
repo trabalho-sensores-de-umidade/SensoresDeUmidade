@@ -65,6 +65,7 @@ public class SensorServiceImpl implements SensorService {
 	}
 
 	@Override
+	
 	public void savePlant(Plant plant) throws DataAccessException {
 		plantRepository.save(plant);
 		

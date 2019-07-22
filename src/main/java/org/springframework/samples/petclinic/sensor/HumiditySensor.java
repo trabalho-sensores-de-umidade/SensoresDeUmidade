@@ -2,9 +2,12 @@ package org.springframework.samples.petclinic.sensor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.samples.petclinic.model.NamedEntity;
+import org.springframework.samples.petclinic.plant.Plant;
 
 
 @Entity
@@ -15,8 +18,22 @@ public class HumiditySensor extends NamedEntity{
 	
     @Column(name = "humidity")
     private int humidity;
+    
+    @Column(name = "message")
     private String message;
     
+    @ManyToOne
+    @JoinColumn(name = "id_plant")
+    private Plant plant;
+    
+    public int getHumidity() {
+		return humidity;
+	}
+	
+	public void setHumidity(int humidity) {
+		this.humidity = humidity;
+	}
+	
 	public String getMessage() {
 		return message;
 	}
@@ -24,20 +41,12 @@ public class HumiditySensor extends NamedEntity{
 	public void setMessage(String message) {
 		this.message = message;
 	}
-
-	public int getHumidity() {
-		return humidity;
-	}
 	
-	public void setHumidity(int humidity) {
-		this.humidity = humidity;
+	public Plant getPlant() {
+		return plant;
 	}
 
-	@Override
-	public String toString() {
-		return String.format("HumiditySensor [humidity=%s, message=%s]", humidity, message);
+	public void setPlant(Plant plant) {
+		this.plant = plant;
 	}
-	
-	
-	
 }

@@ -28,9 +28,7 @@ class PlantController {
 	public ModelAndView showPlant(@PathVariable("plantId") int plantId) {
         ModelAndView mav = new ModelAndView("plants/plantsDetails");
         mav.addObject(this.plants.findById(plantId));
-        return mav;		
-        
+        return mav;        
 	}
-
 
 }
