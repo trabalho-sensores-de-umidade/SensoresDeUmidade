@@ -7,8 +7,8 @@ INSERT INTO plants VALUES (3, 'Mushrooms', 80, 90, 'The humidity of the plant is
 INSERT INTO plants VALUES (4, 'Violets', 40, 80, 'The humidity of the plant is within the ideal range');
 INSERT INTO plants VALUES (5, 'Lavender', 20, 30, 'The humidity of the plant is within the ideal range');
 
-INSERT INTO sensors VALUES (1, 'Sensor1', 60, 'The humidity of the plant is within the ideal range',1);
-INSERT INTO sensors VALUES (2, 'Sensor2', 20, 'The humidity of the plant is within the ideal range',2);
-INSERT INTO sensors VALUES (3, 'Sensor3', 80, 'The humidity of the plant is within the ideal range',3);
-INSERT INTO sensors VALUES (4, 'Sensor4', 40, 'The humidity of the plant is within the ideal range',4);
-INSERT INTO sensors VALUES (5, 'Sensor5', 20, 'The humidity of the plant is within the ideal range',5);
+INSERT INTO sensors VALUES (1, 'Sensor1', 60, 1);
+INSERT INTO sensors VALUES (2, 'Sensor2', 20, 2);
+INSERT INTO sensors VALUES (3, 'Sensor3', 80, 3);
+INSERT INTO sensors VALUES (4, 'Sensor4', 40, 4);
+INSERT INTO sensors VALUES (5, 'Sensor5', 20, 5);
