@@ -16,6 +16,8 @@
 
 package org.springframework.samples.petclinic;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 //import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,8 +26,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.samples.petclinic.service.ServiceEmail;
 //import org.springframework.samples.petclinic.sensor.HumiditySensor;
 import org.springframework.web.client.RestTemplate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @SpringBootApplication
 public class PetClinicApplication {
