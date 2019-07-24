@@ -1,4 +1,4 @@
-INSERT INTO owners VALUES (1, 'George', 'Franklin', '110 W. Liberty St.', 'Madison', '6085551023','desafiodb2019@gmailcom');
+INSERT INTO owners VALUES (1, 'Leticia', 'Moura', '110 W. Liberty St.', 'Madison', '6085551023','let.demoura@gmail.com');
 INSERT INTO owners VALUES (2, 'Betty', 'Davis', '638 Cardinal Ave.', 'Sun Prairie', '6085551749', 'desafiodb2019@gmail.com');
 
 INSERT INTO plants VALUES (1, 'Strawberry', 60, 80, 'The humidity of the plant is within the ideal range');

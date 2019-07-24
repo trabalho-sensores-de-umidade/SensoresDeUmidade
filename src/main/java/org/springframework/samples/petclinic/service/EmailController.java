@@ -2,6 +2,9 @@ package org.springframework.samples.petclinic.service;
 
 import javax.mail.internet.MimeMessage;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 //import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +28,14 @@ public class EmailController {
 	private int sensorId;
 	private String sensorName;
 	private int humidity;
+	
+	private static final Logger log = LoggerFactory.getLogger(EmailController.class);
 
 	@RequestMapping(path = "/email-send", method = RequestMethod.GET)
 	public String sendMail() {
+		log.info("Passou aqui");
 		try {
 			MimeMessage mail = mailSender.createMimeMessage();
-
 			MimeMessageHelper helper = new MimeMessageHelper(mail);
 			helper.setTo("desafiodb2019@gmail.com");
 			helper.setSubject("Plant humidity warning: " + getPlantName());

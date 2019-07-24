@@ -1,9 +1,12 @@
 package org.springframework.samples.petclinic.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.samples.petclinic.PetClinicApplication;
 import org.springframework.samples.petclinic.plant.Plant;
 import org.springframework.samples.petclinic.sensor.HumiditySensor;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,50 +21,52 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RequestMapping("/service")
 @CrossOrigin(exposedHeaders = "errors, content-type")
 public class SensorRestController {
-	
+
 	@Autowired
 	private SensorService sensorservice;
-		
-	@Autowired 
+
+	@Autowired
 	private ServiceEmail service;
-	
+
 	@Autowired
 	private EmailController email;
-	
+
 	@RequestMapping(value = "/{sensorId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@Transactional
-	public ResponseEntity<Void> updateSensor(@PathVariable("sensorId") int sensorId, HumiditySensor sensor, UriComponentsBuilder ucBuilder){
+	public ResponseEntity<Void> updateSensor(@PathVariable("sensorId") int sensorId, HumiditySensor sensor,
+			UriComponentsBuilder ucBuilder) {
 		HumiditySensor currentsensor = this.sensorservice.findHumiditySensorById(sensorId);
 		Plant currentplant = this.sensorservice.findPlantById(sensorId);
-		if(currentsensor == null){return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);}
-		
+		if (currentsensor == null) {
+			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+		}
 
 		currentsensor.setId(sensor.getId());
-		//currentsensor.setName(sensor.getName());
+		// currentsensor.setName(sensor.getName());
 		currentsensor.setHumidity(sensor.getHumidity());
-		
-		if(currentsensor.getHumidity() < currentplant.getHumidity_minimum() || 
-				currentsensor.getHumidity() > currentplant.getHumidity_minimum()) {
+
+		if (currentsensor.getHumidity() < currentplant.getHumidity_minimum()
+				|| currentsensor.getHumidity() > currentplant.getHumidity_maximum()) {
 			currentsensor.setMessage("The humidity of the plant is outside the ideal range");
 			currentplant.setMessage("The humidity of the plant is outside the ideal range");
 			email.setPlantId(currentplant.getId());
 			email.setPlantName(currentplant.getName());
 			email.setHumidity_minimum(currentplant.getHumidity_minimum());
 			email.setHumidity_maximum(currentplant.getHumidity_maximum());
-			
+
 			email.setSensorId(currentsensor.getId());
 			email.setSensorName(currentsensor.getName());
 			email.setHumidity(currentsensor.getHumidity());
 			service.getEmail();
-			
-		}else {
+
+
+		} else {
 			currentsensor.setMessage("The humidity of the plant is within the ideal range");
 			currentplant.setMessage("The humidity of the plant is within the ideal range");
 		}
 		this.sensorservice.saveHumiditySensor(currentsensor);
-		this.sensorservice.savePlant(currentplant); 
-		
-		
+		this.sensorservice.savePlant(currentplant);
+
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
 
@@ -81,6 +86,5 @@ public class SensorRestController {
 		}
 		return new ResponseEntity<HumiditySensor>(sensor, HttpStatus.OK);
 	}
-	
-	
+
 }

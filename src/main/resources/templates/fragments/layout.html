@@ -56,7 +56,12 @@
 						<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
 						<span>Sensors</span>
 					</li>
-
+					<li
+						th:replace="::menuItem ('/login','login',${#httpServletRequest.remoteUser},'th-list',${#httpServletRequest.remoteUser == null ? 'Login' : #httpServletRequest.remoteUser})">
+						<span>Login</span>
+					</li>
+					<li th:if="${#httpServletRequest.remoteUser != null}"><a
+						href="/logout">Logout</a></li>
 				</ul>
 			</div>
 		</div>
