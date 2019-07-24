@@ -1,12 +1,9 @@
 package org.springframework.samples.petclinic.service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.samples.petclinic.PetClinicApplication;
 import org.springframework.samples.petclinic.plant.Plant;
 import org.springframework.samples.petclinic.sensor.HumiditySensor;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,9 +23,6 @@ public class SensorRestController {
 	private SensorService sensorservice;
 
 	@Autowired
-	private ServiceEmail service;
-
-	@Autowired
 	private EmailController email;
 
 	@RequestMapping(value = "/{sensorId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -46,14 +40,9 @@ public class SensorRestController {
 		if (currentsensor.getHumidity() < currentplant.getHumidity_minimum()
 				|| currentsensor.getHumidity() > currentplant.getHumidity_maximum()) {
 			currentplant.setMessage("The humidity of the plant is outside the ideal range");
-			email.setPlantId(currentplant.getId());
-			email.setPlantName(currentplant.getName());
-			email.setHumidity_minimum(currentplant.getHumidity_minimum());
-			email.setHumidity_maximum(currentplant.getHumidity_maximum());
-			email.setSensorId(currentsensor.getId());
-			email.setSensorName(currentsensor.getName());
-			email.setHumidity(currentsensor.getHumidity());
-			service.getEmail();
+			email.setPlantAndSensor(currentplant, currentsensor);
+			email.sendMail();
+			//service.getEmail();
 		} else {
 			currentplant.setMessage("The humidity of the plant is within the ideal range");
 		}
@@ -70,14 +59,14 @@ public class SensorRestController {
 //		return new ResponseEntity<Void>(HttpStatus.CREATED);
 //	}
 //	
-	@RequestMapping(value = "/{sensorId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<HumiditySensor> getHumiditySensor(@PathVariable("sensorId") int sensorId) {
-		HumiditySensor sensor = null;
-		sensor = this.sensorservice.findHumiditySensorById(sensorId);
-		if (sensor == null) {
-			return new ResponseEntity<HumiditySensor>(HttpStatus.NOT_FOUND);
-		}
-		return new ResponseEntity<HumiditySensor>(sensor, HttpStatus.OK);
-	}
+	//@RequestMapping(value = "/{sensorId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+//	public ResponseEntity<HumiditySensor> getHumiditySensor(@PathVariable("sensorId") int sensorId) {
+//		HumiditySensor sensor = null;
+//		sensor = this.sensorservice.findHumiditySensorById(sensorId);
+//		if (sensor == null) {
+//			return new ResponseEntity<HumiditySensor>(HttpStatus.NOT_FOUND);
+//		}
+//		return new ResponseEntity<HumiditySensor>(sensor, HttpStatus.OK);
+//	}
 
 }

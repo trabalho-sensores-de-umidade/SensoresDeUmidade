@@ -11,7 +11,8 @@ public class ServiceEmail {
 		this.restTemplate = restTemplate;
 	}
 
-	public String getEmail() {
-		return restTemplate.getForObject("http://localhost:8080/email-send", String.class);
-	}
+//	public String getEmail() {
+//		return restTemplate.getForObject("http://localhost:8080/email-send", String.class);
+//	}
+
 }
