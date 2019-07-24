@@ -27,8 +27,7 @@ CREATE TABLE sensors (
   id                 INTEGER IDENTITY PRIMARY KEY,
   name               VARCHAR(30),
   humidity           INTEGER NOT NULL,
-  message 			 VARCHAR(60),
-  id_plant			 INTEGER NOT NULL,
+  id_plant			 INTEGER NOT NULL
 );
 ALTER TABLE sensors ADD CONSTRAINT fk_sensors_plants FOREIGN KEY (id_plant) REFERENCES plants (id);
 CREATE INDEX sensors_name ON sensors (name);

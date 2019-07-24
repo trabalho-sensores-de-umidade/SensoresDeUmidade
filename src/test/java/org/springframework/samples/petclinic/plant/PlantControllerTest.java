@@ -17,7 +17,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(PlantController.class)
@@ -25,20 +24,17 @@ public class PlantControllerTest {
 	
 	private static final int TEST_PLANT_ID = 1;
 	
-	//@Autowired
+	@Autowired
 	private MockMvc mockMvc;
 	
 	@MockBean
 	private PlantRepository plant;
 	
-	@Autowired
-	private PlantController plantController;
-	
 	private Plant strawberry;
-	
-	
+		
 	@Before
 	public void setup() {
+		
 		strawberry = new Plant();
 		strawberry.setId(TEST_PLANT_ID);
 		strawberry.setMessage("A umidade da planta esta dentro da faixa ideal");
@@ -46,7 +42,6 @@ public class PlantControllerTest {
 		strawberry.setHumidity_maximum(80);
 		strawberry.setName("Strawberry");
 		given(this.plant.findById(TEST_PLANT_ID)).willReturn(strawberry);
-		this.mockMvc = MockMvcBuilders.standaloneSetup(plantController).build();
 	}
 	
 	@Test

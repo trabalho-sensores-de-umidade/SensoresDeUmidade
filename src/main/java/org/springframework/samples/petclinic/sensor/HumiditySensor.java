@@ -18,10 +18,7 @@ public class HumiditySensor extends NamedEntity{
 	
     @Column(name = "humidity")
     private int humidity;
-    
-    @Column(name = "message")
-    private String message;
-    
+        
     @ManyToOne
     @JoinColumn(name = "id_plant")
     private Plant plant;
@@ -34,13 +31,6 @@ public class HumiditySensor extends NamedEntity{
 		this.humidity = humidity;
 	}
 	
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
 	
 	public Plant getPlant() {
 		return plant;
