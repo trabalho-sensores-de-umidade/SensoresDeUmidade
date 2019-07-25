@@ -19,6 +19,7 @@ th:replace="~{fragments/layout :: layout (~{::body},'sensors')}">
         <tbody>
           <tr th:each="sen : ${sensors}">
               <td>
+              
                   <a th:href="@{/sensors/__${sen.id}__}" th:text="${sen.id}"/></a>
               </td>
               <td>
@@ -34,6 +35,7 @@ th:replace="~{fragments/layout :: layout (~{::body},'sensors')}">
         </tbody>
     </table>
 
-
+	<a class="btn btn-default" th:href="@{/sensors/new}">Add Sensor</a>
+	
   </body>
 </html>

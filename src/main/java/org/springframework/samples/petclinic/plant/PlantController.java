@@ -5,6 +5,7 @@ import java.util.Collection;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -31,5 +32,6 @@ class PlantController {
         mav.addObject(this.plants.findById(plantId));
         return mav;        
 	}
+	
 
 }

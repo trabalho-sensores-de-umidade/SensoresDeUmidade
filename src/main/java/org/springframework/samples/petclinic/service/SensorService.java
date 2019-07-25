@@ -14,9 +14,7 @@ public interface SensorService {
 	HumiditySensor findHumiditySensorById(int sensorId) throws DataAccessException;
 	Collection<HumiditySensor> findAllHumiditySensor() throws DataAccessException;
 	void saveHumiditySensor(HumiditySensor sensor) throws DataAccessException;
-	void deleteHumiditySensor(HumiditySensor sensor) throws DataAccessException;
-
-	
+	void deleteHumiditySensor(HumiditySensor sensor) throws DataAccessException;	
 	
 	
 }
