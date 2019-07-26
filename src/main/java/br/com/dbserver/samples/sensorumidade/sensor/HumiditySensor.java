@@ -7,31 +7,26 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import br.com.dbserver.samples.sensorumidade.model.NamedEntity;
+import br.com.dbserver.samples.sensorumidade.owner.Owner;
 import br.com.dbserver.samples.sensorumidade.plant.Plant;
-
 
 @Entity
 @Table(name = "sensors")
-public class HumiditySensor extends NamedEntity{
-	
+public class HumiditySensor extends NamedEntity {
+
 	private static final long serialVersionUID = 1L;
-	
-    @Column(name = "humidity")
-    private int humidity;
-        
-    @ManyToOne
-    @JoinColumn(name = "id_plant")
-    private Plant plant;
-    
-    public int getHumidity() {
-		return humidity;
-	}
-	
-	public void setHumidity(int humidity) {
-		this.humidity = humidity;
-	}
-	
-	
+
+	@Column(name = "message")
+	private String message;
+
+	@ManyToOne
+	@JoinColumn(name = "id_plant")
+	private Plant plant;
+
+	@ManyToOne
+	@JoinColumn(name = "id_owner")
+	private Owner owner;
+
 	public Plant getPlant() {
 		return plant;
 	}
@@ -39,4 +34,26 @@ public class HumiditySensor extends NamedEntity{
 	public void setPlant(Plant plant) {
 		this.plant = plant;
 	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public Owner getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Owner owner) {
+		this.owner = owner;
+	}
+
+	@Override
+	public String toString() {
+		return "HumiditySensor [message=" + message + ", plant=" + plant + ", owner=" + owner + "]";
+	}
+
 }

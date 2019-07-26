@@ -47,6 +47,12 @@
 					</li>
 
 					<li
+						th:replace="::menuItem ('/owners/find','owners','find owners','search','Find owners')">
+						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						<span>Find owners</span>
+					</li>
+
+					<li
 						th:replace="::menuItem ('/plants','plants','Plants','th-list','Plants')">
 						<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
 						<span>Plants</span>

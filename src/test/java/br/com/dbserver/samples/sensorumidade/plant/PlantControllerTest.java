@@ -37,10 +37,10 @@ public class PlantControllerTest {
 		
 		strawberry = new Plant();
 		strawberry.setId(TEST_PLANT_ID);
-		strawberry.setMessage("A umidade da planta esta dentro da faixa ideal");
-		strawberry.setHumidity_minimum(60);
-		strawberry.setHumidity_maximum(80);
-		strawberry.setName("Strawberry");
+//		strawberry.setMessage("A umidade da planta esta dentro da faixa ideal");
+//		strawberry.setHumidity_minimum(60);
+//		strawberry.setHumidity_maximum(80);
+//		strawberry.setName("Strawberry");
 		given(this.plant.findById(TEST_PLANT_ID)).willReturn(strawberry);
 	}
 	

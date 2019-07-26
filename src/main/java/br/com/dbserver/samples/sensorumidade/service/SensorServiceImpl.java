@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.dbserver.samples.sensorumidade.plant.Plant;
 import br.com.dbserver.samples.sensorumidade.plant.PlantRepository;
+import br.com.dbserver.samples.sensorumidade.read.Read;
+import br.com.dbserver.samples.sensorumidade.read.ReadRepository;
 import br.com.dbserver.samples.sensorumidade.sensor.HumiditySensor;
 import br.com.dbserver.samples.sensorumidade.sensor.HumiditySensorRepository;
 
@@ -19,6 +21,7 @@ public class SensorServiceImpl implements SensorService {
 
 	private HumiditySensorRepository sensorRepository;
 	private PlantRepository plantRepository;
+	private ReadRepository readRepository;
 
 	@Autowired
 	public SensorServiceImpl(HumiditySensorRepository sensorRepository,PlantRepository plantRepository) {
@@ -69,6 +72,28 @@ public class SensorServiceImpl implements SensorService {
 	
 	public void savePlant(Plant plant) throws DataAccessException {
 		plantRepository.save(plant);
+		
+	}
+
+	@Override
+	public Read findReadById(int readId) throws DataAccessException {
+		Read read = null;
+		try {
+			read = readRepository.findById(readId);
+		} catch (ObjectRetrievalFailureException|EmptyResultDataAccessException e) {
+			return null;
+		}
+		return read;	
+	}
+
+	@Override
+	public Collection<Read> findAllRead() throws DataAccessException {
+		return readRepository.findAll();
+	}
+
+	@Override
+	public void saveRead(Read read) throws DataAccessException {
+		readRepository.save(read);
 		
 	}
 

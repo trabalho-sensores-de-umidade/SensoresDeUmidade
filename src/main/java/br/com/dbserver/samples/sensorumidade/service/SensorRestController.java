@@ -1,18 +1,21 @@
 package br.com.dbserver.samples.sensorumidade.service;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.dbserver.samples.sensorumidade.plant.Plant;
+import br.com.dbserver.samples.sensorumidade.read.Read;
 import br.com.dbserver.samples.sensorumidade.sensor.HumiditySensor;
 
 @RestController
@@ -26,41 +29,61 @@ public class SensorRestController {
 	@Autowired
 	private EmailController email;
 
-	@RequestMapping(value = "/{sensorId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	@Transactional
-	public ResponseEntity<Void> updateSensor(@PathVariable("sensorId") int sensorId, HumiditySensor sensor,
+//	@RequestMapping(value = "/{sensorId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+//	@Transactional
+//	public ResponseEntity<Void> updateSensor(@PathVariable("sensorId") int sensorId, HumiditySensor sensor,
+//			UriComponentsBuilder ucBuilder) {
+//		HumiditySensor currentsensor = this.sensorservice.findHumiditySensorById(sensorId);
+//		Plant currentplant = this.sensorservice.findPlantById(sensorId);
+//		if (currentsensor == null) {
+//			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+//		}
+//
+//		currentsensor.setId(sensor.getId());
+//		currentsensor.setHumidity(sensor.getHumidity());
+//		if (currentsensor.getHumidity() < currentplant.getHumidity_minimum()
+//				|| currentsensor.getHumidity() > currentplant.getHumidity_maximum()) {
+//			currentplant.setMessage("The humidity of the plant is outside the ideal range");
+//			email.setPlantAndSensor(currentplant, currentsensor);
+//			email.sendMail();
+//			//service.getEmail();
+//		} else {
+//			currentplant.setMessage("The humidity of the plant is within the ideal range");
+//		}
+//		this.sensorservice.saveHumiditySensor(currentsensor);
+//		this.sensorservice.savePlant(currentplant);
+//
+//		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+//	}
+//
+	
+	@RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<Read> addOwner(@RequestBody @Valid Read read, BindingResult bindingResult,
 			UriComponentsBuilder ucBuilder) {
-		HumiditySensor currentsensor = this.sensorservice.findHumiditySensorById(sensorId);
-		Plant currentplant = this.sensorservice.findPlantById(sensorId);
-		if (currentsensor == null) {
-			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+		HttpHeaders headers = new HttpHeaders();
+		if (bindingResult.hasErrors() || (read == null)) {
+			return new ResponseEntity<Read>(headers, HttpStatus.BAD_REQUEST);
 		}
-
-		currentsensor.setId(sensor.getId());
-		currentsensor.setHumidity(sensor.getHumidity());
-		if (currentsensor.getHumidity() < currentplant.getHumidity_minimum()
-				|| currentsensor.getHumidity() > currentplant.getHumidity_maximum()) {
-			currentplant.setMessage("The humidity of the plant is outside the ideal range");
-			email.setPlantAndSensor(currentplant, currentsensor);
+		this.sensorservice.saveRead(read);
+		headers.setLocation(ucBuilder.path("/service/{id}").buildAndExpand(read.getId()).toUri());
+		
+		HumiditySensor currentsensor = this.sensorservice.findHumiditySensorById(read.getSensor().getId());
+		read.getSensor().getPlant().getType().getHumidity_maximum();
+		
+		if (read.getHumidity() < read.getSensor().getPlant().getType().getHumidity_minimum()
+				|| read.getHumidity() > read.getSensor().getPlant().getType().getHumidity_maximum()) {
+			read.getSensor().setMessage("The humidity of the plant is outside the ideal range");
+			email.setRead(read);
 			email.sendMail();
 			//service.getEmail();
 		} else {
-			currentplant.setMessage("The humidity of the plant is within the ideal range");
+			read.getSensor().setMessage("The humidity of the plant is within the ideal range");
 		}
 		this.sensorservice.saveHumiditySensor(currentsensor);
-		this.sensorservice.savePlant(currentplant);
-
-		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<Read>(read, headers, HttpStatus.CREATED);
 	}
-
-//	@RequestMapping(value = "/{sensorId}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-//	public ResponseEntity<Void> addSensor(@PathVariable("sensorId") int sensorId){
-//		HumiditySensor sensor = this.sensorservice.findHumiditySensorById(sensorId);
-//		this.sensorservice.saveHumiditySensor(sensor);
-//		return new ResponseEntity<Void>(HttpStatus.CREATED);
-//	}
-//	
-	//@RequestMapping(value = "/{sensorId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	
+//	@RequestMapping(value = "/{sensorId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 //	public ResponseEntity<HumiditySensor> getHumiditySensor(@PathVariable("sensorId") int sensorId) {
 //		HumiditySensor sensor = null;
 //		sensor = this.sensorservice.findHumiditySensorById(sensorId);

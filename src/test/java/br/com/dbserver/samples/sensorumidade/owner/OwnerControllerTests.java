@@ -60,9 +60,6 @@ public class OwnerControllerTests {
         george.setId(TEST_OWNER_ID);
         george.setFirstName("George");
         george.setLastName("Franklin");
-        george.setAddress("110 W. Liberty St.");
-        george.setCity("Madison");
-        george.setTelephone("6085551023");
         george.setEmail("desafiodb2019@gmail.com");
         given(this.owners.findById(TEST_OWNER_ID)).willReturn(george);
     }

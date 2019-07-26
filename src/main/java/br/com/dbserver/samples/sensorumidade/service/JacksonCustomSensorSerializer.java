@@ -6,9 +6,9 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 
-import br.com.dbserver.samples.sensorumidade.sensor.HumiditySensor;
+import br.com.dbserver.samples.sensorumidade.read.Read;
 
-public class JacksonCustomSensorSerializer  extends StdSerializer<HumiditySensor> {
+public class JacksonCustomSensorSerializer  extends StdSerializer<Read> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -16,24 +16,25 @@ public class JacksonCustomSensorSerializer  extends StdSerializer<HumiditySensor
 		this(null);
 	}
 
-	public JacksonCustomSensorSerializer(Class<HumiditySensor> s) {
+	public JacksonCustomSensorSerializer(Class<Read> s) {
 		super(s);
 	}
 
 	@Override
-	public void serialize(HumiditySensor sensor, JsonGenerator jgen, SerializerProvider provider) throws IOException {
+	public void serialize(Read read, JsonGenerator jgen, SerializerProvider provider) throws IOException {
 		jgen.writeStartObject();
 		
-		if (sensor.getId() == null) {
+		if (read.getId() == null) {
 			
 			jgen.writeNullField("id");
 			
 		} else {
-			jgen.writeNumberField("id", sensor.getId());
+			jgen.writeNumberField("id", read.getId());
 			
 		}		
-		jgen.writeStringField("name", sensor.getName());
-		jgen.writeNumberField("humidity", sensor.getHumidity());
+		jgen.writeStringField("date", read.getDate_read().toString());
+		jgen.writeNumberField("humidity", read.getHumidity());
+		jgen.writeObjectId(read.getSensor());
 	}
 
 }

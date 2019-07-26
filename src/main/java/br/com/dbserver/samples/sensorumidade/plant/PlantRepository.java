@@ -16,10 +16,10 @@ public interface PlantRepository extends Repository<Plant, Integer> {
     @Transactional(readOnly = true)
     Plant findById(@Param("id") Integer id);
     
-    @Query("SELECT plant FROM Plant plant ORDER BY plant.id")
+    @Query("SELECT ptype FROM Type ptype ORDER BY ptype.name")
     @Transactional(readOnly = true)
-    List<Plant> findPlants();    
-
+    List<Type> findPlantTypes();
+    
     
     void save(Plant plant);
 }

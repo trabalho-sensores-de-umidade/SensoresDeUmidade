@@ -12,8 +12,7 @@ th:replace="~{fragments/layout :: layout (~{::body},'sensors')}">
         <tr>
         	<th style="width: 150px;">Id</th>
             <th th:text="#{name}" style="width: 150px;">Name</th>
-            <th th:text="#{humidity}" style="width: 150px;">Humidity</th>
-            <th th:text="#{plant}" style="width: 150px;">Plant</th>
+            <th th:text="#{message}" style="width: 150px;">Message</th>
         </tr>
         </thead>
         <tbody>
@@ -26,10 +25,7 @@ th:replace="~{fragments/layout :: layout (~{::body},'sensors')}">
                   <p th:href="@{/sensors/__${sen.id}__}" th:text="${sen.name}"/></p>
               </td>
               <td>
-                  <p th:href="@{/sensors/__${sen.id}__}" th:text="${sen.humidity}"/></p>
-              </td>
-              <td>
-                  <p th:href="@{/sensors/__${sen.id}__}" th:text="${sen.plant.name}"/></p>
+                  <p th:href="@{/sensors/__${sen.id}__}" th:text="${sen.message}"/></p>
               </td>
           </tr>
         </tbody>

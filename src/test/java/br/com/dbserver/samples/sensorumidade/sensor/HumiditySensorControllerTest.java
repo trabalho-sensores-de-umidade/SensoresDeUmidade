@@ -41,14 +41,14 @@ public class HumiditySensorControllerTest {
 		
 		plantTest = new Plant();
 		plantTest.setId(TEST_PLANT_ID);
-		plantTest.setMessage("A umidade da planta esta dentro da faixa ideal");
-		plantTest.setHumidity_minimum(60);
-		plantTest.setHumidity_maximum(80);
-		plantTest.setName("Strawberry");
-		
-		sensor1 = new HumiditySensor();
+//		plantTest.setMessage("A umidade da planta esta dentro da faixa ideal");
+//		plantTest.setHumidity_minimum(60);
+//		plantTest.setHumidity_maximum(80);
+//		plantTest.setName("Strawberry");
+//		
+//		sensor1 = new HumiditySensor();
 		sensor1.setId(TEST_HUMIDITY_SENSOR_ID);
-		sensor1.setHumidity(60);
+//		sensor1.setHumidity(60);
 		sensor1.setName("Sensor1");
 		sensor1.setPlant(plantTest);
 		given(this.sensor.findById(TEST_HUMIDITY_SENSOR_ID)).willReturn(sensor1);
