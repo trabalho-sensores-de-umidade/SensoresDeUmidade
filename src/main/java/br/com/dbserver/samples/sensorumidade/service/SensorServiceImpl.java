@@ -24,9 +24,10 @@ public class SensorServiceImpl implements SensorService {
 	private ReadRepository readRepository;
 
 	@Autowired
-	public SensorServiceImpl(HumiditySensorRepository sensorRepository,PlantRepository plantRepository) {
+	public SensorServiceImpl(HumiditySensorRepository sensorRepository,PlantRepository plantRepository,ReadRepository readRepository) {
 		this.sensorRepository = sensorRepository;
 		this.plantRepository = plantRepository;
+		this.readRepository = readRepository;
 	}
 
 	@Override

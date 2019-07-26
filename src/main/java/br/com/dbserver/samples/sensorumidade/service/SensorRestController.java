@@ -64,6 +64,8 @@ public class SensorRestController {
 		if (bindingResult.hasErrors() || (read == null)) {
 			return new ResponseEntity<Read>(headers, HttpStatus.BAD_REQUEST);
 		}
+		
+		
 		this.sensorservice.saveRead(read);
 		headers.setLocation(ucBuilder.path("/service/{id}").buildAndExpand(read.getId()).toUri());
 		

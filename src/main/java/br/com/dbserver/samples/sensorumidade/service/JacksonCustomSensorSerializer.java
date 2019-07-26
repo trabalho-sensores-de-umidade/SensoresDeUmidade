@@ -1,6 +1,8 @@
 package br.com.dbserver.samples.sensorumidade.service;
 
 import java.io.IOException;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
@@ -23,6 +25,7 @@ public class JacksonCustomSensorSerializer  extends StdSerializer<Read> {
 	@Override
 	public void serialize(Read read, JsonGenerator jgen, SerializerProvider provider) throws IOException {
 		jgen.writeStartObject();
+		LocalTime date = read.getDate_read();
 		
 		if (read.getId() == null) {
 			
@@ -32,7 +35,11 @@ public class JacksonCustomSensorSerializer  extends StdSerializer<Read> {
 			jgen.writeNumberField("id", read.getId());
 			
 		}		
-		jgen.writeStringField("date", read.getDate_read().toString());
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		String formattedString = date.format(formatter);
+		
+		jgen.writeStringField("date", formattedString);
 		jgen.writeNumberField("humidity", read.getHumidity());
 		jgen.writeObjectId(read.getSensor());
 	}
