@@ -63,32 +63,36 @@ public class SensorRestController {
 	@RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Read> addOwner(@RequestBody @Valid Read read, BindingResult bindingResult,
 			UriComponentsBuilder ucBuilder) {
-		HumiditySensor aux = this.sensorservice.findHumiditySensorById(1);
 		HttpHeaders headers = new HttpHeaders();
+
+		// TESTES INICIO
+		//HumiditySensor aux = this.sensorservice.findHumiditySensorById(read.getSensor().getId());
 		log.info("ID READ: " + read.getId());
 		log.info("HUMIDADE READ: " + read.getHumidity());
 		log.info("DATE READ: " + read.getDate_read());
-		log.info("ID Sensor READ: " + aux.getName());
+		log.info("ID SENSOR READ: " + read.getSensor());
+		//log.info("ID Sensor READ: " + aux.getId());
 		log.info("PASSOU AQUI"); 
+		//TESTE FIM	
+		
 		if (bindingResult.hasErrors() || (read == null)) {
 			return new ResponseEntity<Read>(headers, HttpStatus.BAD_REQUEST);
 		}
-		
-		
 		this.sensorservice.saveRead(read);
 		headers.setLocation(ucBuilder.path("/service/{id}").buildAndExpand(read.getId()).toUri());
 		
 		HumiditySensor currentsensor = this.sensorservice.findHumiditySensorById(read.getSensor().getId());
-		read.getSensor().getPlant().getType().getHumidity_maximum();
 		
-		if (read.getHumidity() < read.getSensor().getPlant().getType().getHumidity_minimum()
-				|| read.getHumidity() > read.getSensor().getPlant().getType().getHumidity_maximum()) {
-			read.getSensor().setMessage("The humidity of the plant is outside the ideal range");
+		currentsensor.getPlant().getType().getHumidity_maximum();
+		
+		if (read.getHumidity() < currentsensor.getPlant().getType().getHumidity_minimum()
+				|| read.getHumidity() > currentsensor.getPlant().getType().getHumidity_maximum()) {
+			currentsensor.setMessage("The humidity of the plant is outside the ideal range");
 			email.setRead(read);
 			email.sendMail();
 			//service.getEmail();
 		} else {
-			read.getSensor().setMessage("The humidity of the plant is within the ideal range");
+			currentsensor.setMessage("The humidity of the plant is within the ideal range");
 		}
 		this.sensorservice.saveHumiditySensor(currentsensor);
 		return new ResponseEntity<Read>(read, headers, HttpStatus.CREATED); 

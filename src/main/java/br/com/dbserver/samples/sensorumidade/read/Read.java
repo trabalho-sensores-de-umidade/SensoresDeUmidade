@@ -29,7 +29,7 @@ public class Read extends BaseEntity {
 	
 	@ManyToOne
 	@JoinColumn(name = "id_sensor")
-	private HumiditySensor sensor;
+	private HumiditySensor id_sensor;
 
 
 	public int getHumidity() {
@@ -41,11 +41,11 @@ public class Read extends BaseEntity {
 	}
 
 	public HumiditySensor getSensor() {
-		return sensor;
+		return id_sensor; 
 	}
 
-	public void setSensor(HumiditySensor sensor) {
-		this.sensor = sensor;
+	public void setSensor(HumiditySensor id_sensor) {
+		this.id_sensor = id_sensor;
 	}
 
 	public Date getDate_read() {
@@ -58,7 +58,7 @@ public class Read extends BaseEntity {
 
 	@Override
 	public String toString() {
-		return "Read [humidity=" + humidity + ", sensor=" + sensor + ", date_read=" + date_read + "]";
+		return "Read [humidity=" + humidity + ", sensor=" + id_sensor + ", date_read=" + date_read + "]";
 	}
 
 }

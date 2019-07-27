@@ -19,6 +19,7 @@ public class EmailController {
 	private JavaMailSender mailSender;
 
 	private Read read;
+	
 
 	@RequestMapping(path = "/email-send")
 	public String sendMail() {

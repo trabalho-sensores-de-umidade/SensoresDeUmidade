@@ -4,9 +4,6 @@ import java.io.IOException;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
@@ -16,8 +13,6 @@ import br.com.dbserver.samples.sensorumidade.read.Read;
 public class JacksonCustomSensorSerializer  extends StdSerializer<Read> {
 
 	private static final long serialVersionUID = 1L;
-	private static final Logger log =  LoggerFactory.getLogger(JacksonCustomSensorSerializer.class);
-
 	
 	public JacksonCustomSensorSerializer() {
 		this(null);
@@ -43,8 +38,10 @@ public class JacksonCustomSensorSerializer  extends StdSerializer<Read> {
 		}	
 		jgen.writeNumberField("humidity", read.getHumidity());		
 		jgen.writeStringField("date_read", formatter.format(read.getDate_read()));
-		jgen.writeNumberField("id_sensor", read.getSensor().getId());
-
+		jgen.writeObjectField("id_sensor", read.getSensor());
+		jgen.writeEndObject();
 	}
+	
+
 
 }
