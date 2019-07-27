@@ -42,7 +42,7 @@ CREATE INDEX sensors_name ON sensors (name);
 CREATE TABLE reads (
   id                 INTEGER IDENTITY PRIMARY KEY,
   humidity           INTEGER NOT NULL,
-  date_read			 TIMESTAMP, 
+  date_read			 DATE, 
   id_sensor			 INTEGER NOT NULL
 );
 ALTER TABLE reads ADD CONSTRAINT fk_reads_sensors FOREIGN KEY (id_sensor) REFERENCES sensors (id);

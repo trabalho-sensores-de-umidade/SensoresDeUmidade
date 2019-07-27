@@ -6,6 +6,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.sun.mail.handlers.message_rfc822;
+
 import br.com.dbserver.samples.sensorumidade.model.NamedEntity;
 import br.com.dbserver.samples.sensorumidade.owner.Owner;
 import br.com.dbserver.samples.sensorumidade.plant.Plant;
@@ -53,6 +55,7 @@ public class HumiditySensor extends NamedEntity {
 
 	@Override
 	public String toString() {
+	
 		return "HumiditySensor [message=" + message + ", plant=" + plant + ", owner=" + owner + "]";
 	}
 

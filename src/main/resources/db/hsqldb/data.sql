@@ -19,8 +19,8 @@ INSERT INTO sensors VALUES (3, 'Sensor3', 3, 1, 'The humidity of the plant is wi
 INSERT INTO sensors VALUES (4, 'Sensor4', 4, 2, 'The humidity of the plant is within the ideal range');
 INSERT INTO sensors VALUES (5, 'Sensor5', 5, 1, 'The humidity of the plant is within the ideal range');
 
-INSERT INTO reads VALUES (1, 60, '2019-07-25 14:37:08',1);
-INSERT INTO reads VALUES (2, 20, '2019-07-25 14:37:10',2);
-INSERT INTO reads VALUES (3, 80, '2019-07-25 14:37:12',3);
-INSERT INTO reads VALUES (4, 40, '2019-07-25 14:37:14',4);
-INSERT INTO reads VALUES (5, 20, '2019-07-25 14:37:16',5);
+INSERT INTO reads VALUES (1, 60, '2019-07-25',1);
+INSERT INTO reads VALUES (2, 20, '2019-07-25',2);
+INSERT INTO reads VALUES (3, 80, '2019-07-25',3);
+INSERT INTO reads VALUES (4, 40, '2019-07-25',4);
+INSERT INTO reads VALUES (5, 20, '2019-07-25',5);

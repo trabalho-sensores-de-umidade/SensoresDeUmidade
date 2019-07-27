@@ -2,6 +2,8 @@ package br.com.dbserver.samples.sensorumidade.service;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -25,7 +27,8 @@ public class SensorRestController {
 
 	@Autowired
 	private SensorService sensorservice;
-
+	private static final Logger log =  LoggerFactory.getLogger(SensorRestController.class);
+	
 	@Autowired
 	private EmailController email;
 
@@ -60,7 +63,13 @@ public class SensorRestController {
 	@RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Read> addOwner(@RequestBody @Valid Read read, BindingResult bindingResult,
 			UriComponentsBuilder ucBuilder) {
+		HumiditySensor aux = this.sensorservice.findHumiditySensorById(1);
 		HttpHeaders headers = new HttpHeaders();
+		log.info("ID READ: " + read.getId());
+		log.info("HUMIDADE READ: " + read.getHumidity());
+		log.info("DATE READ: " + read.getDate_read());
+		log.info("ID Sensor READ: " + aux.getName());
+		log.info("PASSOU AQUI"); 
 		if (bindingResult.hasErrors() || (read == null)) {
 			return new ResponseEntity<Read>(headers, HttpStatus.BAD_REQUEST);
 		}
@@ -82,7 +91,7 @@ public class SensorRestController {
 			read.getSensor().setMessage("The humidity of the plant is within the ideal range");
 		}
 		this.sensorservice.saveHumiditySensor(currentsensor);
-		return new ResponseEntity<Read>(read, headers, HttpStatus.CREATED);
+		return new ResponseEntity<Read>(read, headers, HttpStatus.CREATED); 
 	}
 	
 //	@RequestMapping(value = "/{sensorId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
