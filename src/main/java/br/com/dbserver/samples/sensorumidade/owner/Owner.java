@@ -26,6 +26,7 @@ public class Owner extends Person {
 	@NotEmpty
 	private String password;
 
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
 	private Set<HumiditySensor> sensors;
 
@@ -53,9 +54,17 @@ public class Owner extends Person {
 		this.sensors = sensors;
 	}
 
-	@Override
-	public String toString() {
-		return "Owner [email=" + email + ", password=" + password + ", sensors=" + sensors + "]";
-	}
+//    @Override
+//    public String toString() {
+//        return new ToStringCreator(this)
+//
+//                .append("id", this.getId())
+//                .append("email", this.getEmail())
+//                .append("lastName", this.getLastName())
+//                .append("firstName", this.getFirstName())
+//                .append("firstName", this.getPassword())
+//                .append("Sensors", this.getSensors())
+//                .toString();
+//    }
 
 }

@@ -22,7 +22,6 @@ import br.com.dbserver.samples.sensorumidade.sensor.HumiditySensor;
 
 @RestController
 @RequestMapping("/service")
-@CrossOrigin(exposedHeaders = "errors, content-type")
 public class SensorRestController {
 
 	@Autowired
@@ -61,20 +60,14 @@ public class SensorRestController {
 //
 	
 	@RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<Read> addOwner(@RequestBody @Valid Read read, BindingResult bindingResult,
+	public ResponseEntity<Read> addOwner(@RequestBody  Read read, BindingResult bindingResult,
 			UriComponentsBuilder ucBuilder) {
 		HttpHeaders headers = new HttpHeaders();
 
-		// TESTES INICIO
-		//HumiditySensor aux = this.sensorservice.findHumiditySensorById(read.getSensor().getId());
-		log.info("ID READ: " + read.getId());
-		log.info("HUMIDADE READ: " + read.getHumidity());
-		log.info("DATE READ: " + read.getDate_read());
-		log.info("ID SENSOR READ: " + read.getSensor());
-		//log.info("ID Sensor READ: " + aux.getId());
-		log.info("PASSOU AQUI"); 
-		//TESTE FIM	
-		
+		HumiditySensor aux = this.sensorservice.findHumiditySensorById(read.getSensor().getId());
+
+		read.setSensor(aux);
+
 		if (bindingResult.hasErrors() || (read == null)) {
 			return new ResponseEntity<Read>(headers, HttpStatus.BAD_REQUEST);
 		}
@@ -83,8 +76,7 @@ public class SensorRestController {
 		
 		HumiditySensor currentsensor = this.sensorservice.findHumiditySensorById(read.getSensor().getId());
 		
-		currentsensor.getPlant().getType().getHumidity_maximum();
-		
+				
 		if (read.getHumidity() < currentsensor.getPlant().getType().getHumidity_minimum()
 				|| read.getHumidity() > currentsensor.getPlant().getType().getHumidity_maximum()) {
 			currentsensor.setMessage("The humidity of the plant is outside the ideal range");
@@ -94,7 +86,7 @@ public class SensorRestController {
 		} else {
 			currentsensor.setMessage("The humidity of the plant is within the ideal range");
 		}
-		this.sensorservice.saveHumiditySensor(currentsensor);
+		//this.sensorservice.saveHumiditySensor(currentsensor);
 		return new ResponseEntity<Read>(read, headers, HttpStatus.CREATED); 
 	}
 	
