@@ -1,30 +1,47 @@
 <!DOCTYPE html>
 
 <html xmlns:th="https://www.thymeleaf.org"
-  th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
+	th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
 
-  <body>
-  
-  
-    <h2>Owner Information</h2>
-  
-  
-    <table class="table table-striped" th:object="${owner}">
-      <tr>
-        <th>Name</th>
-        <td><b th:text="*{firstName + ' ' + lastName}"></b></td>
-      </tr>
-      <tr>
-        <th>E-mail</th>
-        <td th:text="*{email}" /></td>
-      </tr>
-      <tr>
-        <th>Password</th>
-        <td th:text="*{password}" /></td>
-      </tr>
-    </table>
- 
-  
-  </body>
+<body>
+
+
+	<h2>Owner Information</h2>
+
+
+	<table class="table table-striped" th:object="${owner}">
+		<tr>
+			<th>Name</th>
+			<td><b th:text="*{firstName + ' ' + lastName}"></b></td>
+		</tr>
+		<tr>
+			<th>E-mail</th>
+			<td th:text="*{email}" /></td>
+		</tr>
+		<tr>
+			<th>Password</th>
+			<td th:text="*{password}" /></td>
+		</tr>
+	</table>
+	<table id="sensors" class="table table-striped">
+		<thead>
+			<tr>
+				<th style="width: 150px;">Id</th>
+				<th th:text="#{name}" style="width: 150px;">Name</th>
+				<th th:text="#{plant}" style="width: 150px;">Plant</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="sen : ${owner.sensors}">
+				<td th:text="*{sen.id}"></td>
+				<td th:text="*{sen.name}"></td>
+				<td th:text="*{sen.plant.type.name}"></td>
+			</tr>
+		</tbody>
+	</table>
+
+
+
+</body>
 
 </html>
