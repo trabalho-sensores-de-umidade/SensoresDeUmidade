@@ -1,18 +1,18 @@
 package br.com.dbserver.samples.sensorumidade.read;
 
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -29,13 +29,12 @@ public class Read extends BaseEntity {
 	@Column(name = "humidity")
 	private int humidity;
 	
-	@JsonProperty
-    @Column(name = "date_read")
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd") 
-	private Date date_read;
-	
-	
+	//@JsonProperty
+    @Column(name = "date_read") 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	@DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
+    private LocalDateTime date_read = LocalDateTime.now();
+    
     @JsonProperty
 	@ManyToOne
 	@JoinColumn(name = "id_sensor")
@@ -49,6 +48,7 @@ public class Read extends BaseEntity {
 	public void setHumidity(int humidity) {
 		this.humidity = humidity;
 	}
+	
 
 	public HumiditySensor getSensor() {
 		return id_sensor; 
@@ -58,11 +58,11 @@ public class Read extends BaseEntity {
 		this.id_sensor = id_sensor;
 	}
 
-	public Date getDate_read() {
+	public LocalDateTime getDate_read() {
 		return date_read;
 	}
 
-	public void setDate_read(Date date_read) {
+	public void setDate_read(LocalDateTime date_read) {
 		this.date_read = date_read;
 	}
 
