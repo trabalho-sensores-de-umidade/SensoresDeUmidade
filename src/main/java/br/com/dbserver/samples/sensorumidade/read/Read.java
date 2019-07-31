@@ -59,9 +59,15 @@ public class Read extends BaseEntity {
 	}
 
 	public String getDate_read() {
+		String date = dateFormatter();
+		return date; 
+	}
+
+	private String dateFormatter() {
 		DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 		String date = formatter.format(date_read).replace('T', ' ');
-		return date; 
+		date.substring(0, 19);
+		return date;
 	}
 
 	public void setDate_read(LocalDateTime date_read) {
