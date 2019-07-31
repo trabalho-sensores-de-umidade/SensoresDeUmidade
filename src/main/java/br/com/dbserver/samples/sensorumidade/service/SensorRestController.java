@@ -10,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -60,7 +59,7 @@ public class SensorRestController {
 //
 	
 	@RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<Read> addOwner(@RequestBody  Read read, BindingResult bindingResult,
+	public ResponseEntity<Read> addOwner(@RequestBody @Valid  Read read, BindingResult bindingResult,
 			UriComponentsBuilder ucBuilder) {
 		HttpHeaders headers = new HttpHeaders();
 

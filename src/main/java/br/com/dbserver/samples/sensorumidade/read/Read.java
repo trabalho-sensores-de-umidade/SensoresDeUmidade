@@ -2,7 +2,7 @@ package br.com.dbserver.samples.sensorumidade.read;
 
 
 import java.time.LocalDateTime;
-import java.util.Calendar;
+import java.time.format.DateTimeFormatter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,7 +32,7 @@ public class Read extends BaseEntity {
 	//@JsonProperty
     @Column(name = "date_read") 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-	@DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime date_read = LocalDateTime.now();
     
     @JsonProperty
@@ -40,7 +40,7 @@ public class Read extends BaseEntity {
 	@JoinColumn(name = "id_sensor")
 	private HumiditySensor id_sensor;
 
-
+    
 	public int getHumidity() {
 		return humidity;
 	}
@@ -58,8 +58,10 @@ public class Read extends BaseEntity {
 		this.id_sensor = id_sensor;
 	}
 
-	public LocalDateTime getDate_read() {
-		return date_read;
+	public String getDate_read() {
+		DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+		String date = formatter.format(date_read).replace('T', ' ');
+		return date; 
 	}
 
 	public void setDate_read(LocalDateTime date_read) {

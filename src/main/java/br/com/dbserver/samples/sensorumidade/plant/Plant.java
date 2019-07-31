@@ -28,8 +28,7 @@ public class Plant extends BaseEntity {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "plant",fetch = FetchType.EAGER)
 	private Set<HumiditySensor> sensors;
-	
-	
+		
 	@ManyToOne
 	@JoinColumn(name = "id_type")
 	private Type type;
