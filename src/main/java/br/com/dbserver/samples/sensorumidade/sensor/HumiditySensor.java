@@ -10,10 +10,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.style.ToStringCreator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import br.com.dbserver.samples.sensorumidade.HumiditySensorApplication;
 import br.com.dbserver.samples.sensorumidade.model.NamedEntity;
 import br.com.dbserver.samples.sensorumidade.owner.Owner;
 import br.com.dbserver.samples.sensorumidade.plant.Plant;
@@ -26,7 +29,7 @@ public class HumiditySensor extends NamedEntity {
 
 	private static final long serialVersionUID = 1L;
 	
-
+	private static final Logger log = LoggerFactory.getLogger(HumiditySensorApplication.class);
 	@Column(name = "message")
 	private String message;
 
@@ -46,6 +49,8 @@ public class HumiditySensor extends NamedEntity {
 	
     
 	public Plant getPlant() {
+		log.info("PLANT: " + plant);
+		
 		return plant;
 	}
 

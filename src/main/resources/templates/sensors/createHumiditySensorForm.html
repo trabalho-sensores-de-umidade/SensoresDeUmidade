@@ -14,9 +14,11 @@
 			<input
 				th:replace="~{fragments/inputField :: input ('Name', 'name', 'text')}" />
 			<input
-				th:replace="~{fragments/inputField :: input ('Humidity Current', 'humidity', 'text')}" />
+				th:replace="~{fragments/selectField :: select ('Plant', 'plant', ${plant})}" />
 			<input
-				th:replace="~{fragments/selectField :: select ('Plant', 'plant.name', ${plants})}" />
+				th:replace="~{fragments/selectField :: select ('Owner', 'owner.firstName', ${owners})}" />
+			<input
+				th:replace="~{fragments/inputField :: input ('Message', 'message', 'text')}" />
 		</div>
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
