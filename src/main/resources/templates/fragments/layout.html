@@ -47,12 +47,6 @@
 					</li>
 
 					<li
-						th:replace="::menuItem ('/owners/find','owners','find owners','search','Find owners')">
-						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-						<span>Find owners</span>
-					</li>
-
-					<li
 						th:replace="::menuItem ('/plants','plants','Plants','th-list','Plants')">
 						<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
 						<span>Plants</span>
@@ -63,12 +57,13 @@
 						<span>Sensors</span>
 					</li>
 					<li
-						th:replace="::menuItem ('/login','login',${#httpServletRequest.remoteUser},'th-list',${#httpServletRequest.remoteUser == null ? 'Login' : #httpServletRequest.remoteUser})">
+						th:replace="::menuItem (${#httpServletRequest.remoteUser == null ? '/login' : '/owners'},'login',${#httpServletRequest.remoteUser},'th-list',${#httpServletRequest.remoteUser == null ? 'Login' : #httpServletRequest.remoteUser})">
 						<span>Login</span>
 					</li>
 					<li th:if="${#httpServletRequest.remoteUser != null}"><a
 						href="/logout">Logout</a></li>
 				</ul>
+
 			</div>
 		</div>
 	</nav>

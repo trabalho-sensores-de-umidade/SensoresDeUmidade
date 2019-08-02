@@ -11,7 +11,6 @@
         <tr>
             <th>Name</th>
             <th>Email</th>
-            <th>Password</th>
         </tr>
         </thead>
         <tbody>
@@ -20,7 +19,6 @@
                   <a th:href="@{/owners/__${owner.id}__}" th:text="${owner.firstName + ' ' + owner.lastName}"/></a>
               </td>
               <td th:text="${owner.email}"/>
-              <td th:text="${owner.password}"/>
           </tr>
         </tbody>
     </table>
