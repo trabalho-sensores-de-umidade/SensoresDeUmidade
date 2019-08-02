@@ -6,16 +6,16 @@
 </head>
 <body>
 	<h2>Login</h2>
-	<form th:action="@{/login}" method="post" class="form-horizontal" id="search-owner-form">
-		
+
+	<form th:action="@{/login}" method="post" class="form-horizontal"
+		id="search-owner-form">
 		<div class="form-group">
 			<div class="control-group" id="lastNameGroup">
 				<label class="col-sm-2 control-label"> User Name: </label>
 				<div class="col-sm-10">
 					<input class="form-control" type="text" name="username" />
 				</div>
-				<br></br>
-				<label class="col-sm-2 control-label"> Password: </label>
+				<br></br> <label class="col-sm-2 control-label"> Password: </label>
 				<div class="col-sm-10">
 					<input class="form-control" type="password" name="password" />
 				</div>
@@ -24,12 +24,12 @@
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<button type="submit" class="btn btn-default">Sign In</button>
-				<a class="btn btn-default" th:href="@{/owners/new}">New</a>
-				<br></br>
+				<a class="btn btn-default" th:href="@{/owners/new}">New</a> <br></br>
 				<div th:if="${param.error}">Invalid username and password.</div>
 				<div th:if="${param.logout}">You have been logged out.</div>
 			</div>
 		</div>
 	</form>
+
 </body>
 </html>
