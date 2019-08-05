@@ -24,10 +24,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		return super.authenticationManagerBean();
 	}
 
+	// Coloquei .headers().frameOptions().disable(); por causa do spring security
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-        .csrf().disable();
+        .csrf().disable().headers().frameOptions().disable();
 		http
 			.authorizeRequests()
 				.antMatchers("/","/owners/new", "/resources/**", "/webjars/**").permitAll()
